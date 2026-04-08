@@ -1,0 +1,114 @@
+{
+  "name": "Agendamento de Consulta",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "agendamento",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook - Novo Agendamento",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "table": "Appointment",
+        "columns": {
+          "userId": "={{ $json.userId }}",
+          "patientId": "={{ $json.patientId }}",
+          "dateTime": "={{ $json.dateTime }}",
+          "duration": "={{ $json.duration }}",
+          "type": "={{ $json.type }}",
+          "status": "SCHEDULED"
+        }
+      },
+      "id": "create-appointment",
+      "name": "Criar Agendamento",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 1,
+      "position": [500, 300]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "table": "Patient",
+        "filter": "id={{ $json.patientId }}"
+      },
+      "id": "get-patient",
+      "name": "Buscar Paciente",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 1,
+      "position": [750, 300]
+    },
+    {
+      "parameters": {
+        "url": "={{ $env.EVOLUTE_API_URL }}/message/send",
+        "method": "POST",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "to",
+              "value": "={{ $json.phone }}"
+            },
+            {
+              "name": "message",
+              "value": "Olá {{ $json.name }}! 📅\n\nSua consulta foi agendada para {{ $json.dateTime }}.\n\nEm caso de dúvidas, entre em contato.\n\nEquipe Sauvia"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "send-confirmation",
+      "name": "Enviar Confirmação WhatsApp",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1000, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { success: true, appointmentId: $json.id } }}"
+      },
+      "id": "response",
+      "name": "Resposta",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1250, 300]
+    }
+  ],
+  "connections": {
+    "Webhook - Novo Agendamento": {
+      "main": [
+        [
+          { "node": "Criar Agendamento", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Criar Agendamento": {
+      "main": [
+        [
+          { "node": "Buscar Paciente", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Buscar Paciente": {
+      "main": [
+        [
+          { "node": "Enviar Confirmação WhatsApp", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Enviar Confirmação WhatsApp": {
+      "main": [
+        [
+          { "node": "Resposta", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  }
+}

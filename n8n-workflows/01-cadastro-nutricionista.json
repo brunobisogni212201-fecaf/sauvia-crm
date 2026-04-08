@@ -1,0 +1,131 @@
+{
+  "name": "Cadastro Nutricionista",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "cadastro-nutricionista",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook - Cadastro",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "table": "User",
+        "columns": {
+          "email": "={{ $json.email }}",
+          "name": "={{ $json.name }}",
+          "cpf": "={{ $json.cpf }}",
+          "phone": "={{ $json.phone }}",
+          "cognitoId": "={{ $json.cognitoId }}",
+          "role": "NUTRITIONIST"
+        }
+      },
+      "id": "create-user",
+      "name": "Criar Usuário no Banco",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 1,
+      "position": [500, 300]
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{ $env.FROM_EMAIL }}",
+        "toEmail": "={{ $json.email }}",
+        "subject": "Bem-vindo ao Sauvia!",
+        "body": "Olá {{ $json.name }}!\n\nObrigado por se cadastrar no Sauvia, o CRM completo para nutricionistas.\n\nSeu login: {{ $json.email }}\n\nComece agora mesmo a gerenciar seus pacientes!\n\nAbraços,\nEquipe Sauvia"
+      },
+      "id": "send-welcome-email",
+      "name": "Email de Boas-vindas (SES)",
+      "type": "n8n-nodes-base.awsSes",
+      "typeVersion": 1,
+      "position": [750, 300]
+    },
+    {
+      "parameters": {
+        "url": "={{ $env.EVOLUTE_API_URL }}/message/send",
+        "method": "POST",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "to",
+              "value": "={{ $json.phone }}"
+            },
+            {
+              "name": "message",
+              "value": "Olá {{ $json.name }}! Bem-vindo ao Sauvia! 🎉\n\nSeu cadastro foi realizado com sucesso.\nAcesse: https://sauvia.com.br"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "send-whatsapp-welcome",
+      "name": "WhatsApp Boas-vindas",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1000, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { success: true, message: 'Cadastro realizado com sucesso!' } }}"
+      },
+      "id": "response",
+      "name": "Resposta Sucesso",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1250, 300]
+    }
+  ],
+  "connections": {
+    "Webhook - Cadastro": {
+      "main": [
+        [
+          {
+            "node": "Criar Usuário no Banco",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Criar Usuário no Banco": {
+      "main": [
+        [
+          {
+            "node": "Email de Boas-vindas (SES)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email de Boas-vindas (SES)": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Boas-vindas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Boas-vindas": {
+      "main": [
+        [
+          {
+            "node": "Resposta Sucesso",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
