@@ -1,0 +1,100 @@
+version: '3.8'
+
+services:
+  # Traefik - Reverse Proxy & SSL
+  traefik:
+    image: traefik:v3.0
+    container_name: sau via-traefik
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./docker/traefik/traefik.yml:/traefik.yml:ro
+      - ./docker/traefik/certs:/certs:rw
+    environment:
+      - TZ=America/Sao_Paulo
+    networks:
+      - sau via-network
+    labels:
+      - "traefik.enable=true"
+
+  # Next.js App
+  nextjs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sau via-nextjs
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://sauviauser:Sauvia2024Secure@sauviadb.catawsu2siuo.us-east-1.rds.amazonaws.com:5432/sauvia
+      - NEXTAUTH_URL=https://sauvia.com.br
+      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
+      - COGNITO_CLIENT_ID=2fs7g0dd2c7rp3n4aas53c18p0
+      - COGNITO_CLIENT_SECRET=
+      - COGNITO_ISSUER=https://cognito-idp.us-east-1.amazonaws.com/us-east-1_Zftb4N8wn
+      - AWS_REGION=us-east-1
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    networks:
+      - sau via-network
+    depends_on:
+      - redis
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.sauvia.rule=Host(`sauvia.com.br`) || Host(`www.sauvia.com.br`)"
+      - "traefik.http.routers.sauvia.entrypoints=websecure"
+      - "traefik.http.routers.sauvia.tls=true"
+      - "traefik.http.services.sauvia.loadbalancer.server.port=3000"
+
+  # Redis
+  redis:
+    image: redis:7-alpine
+    container_name: sau via-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    networks:
+      - sau via-network
+
+  # n8n - Automação
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: sau via-n8n
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=${N8N_USER:-admin}
+      - N8N_BASIC_AUTH_PASSWORD=${N8N_PASSWORD}
+      - N8N_HOST=n8n.sauvia.com.br
+      - WEBHOOK_URL=https://n8n.sauvia.com.br
+      - GENERIC_TIMEZONE=America/Sao_Paulo
+      - N8N_PROTOCOL=https
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_HOST=sauviadb.catawsu2siuo.us-east-1.rds.amazonaws.com
+      - DB_POSTGRESDB_PORT=5432
+      - DB_POSTGRESDB_DATABASE=n8n
+      - DB_POSTGRESDB_USER=sauviauser
+      - DB_POSTGRESDB_PASSWORD=Sauvia2024Secure
+    volumes:
+      - n8n_data:/home/node/.n8n
+    networks:
+      - sau via-network
+    depends_on:
+      - redis
+
+networks:
+  sau via-network:
+    driver: bridge
+
+volumes:
+  redis_data:
+  n8n_data:
