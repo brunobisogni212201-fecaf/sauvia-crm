@@ -1,0 +1,230 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  cpf           String    @unique
+  phone         String?
+  cognitoId     String    @unique
+  role          Role      @default(NUTRITIONIST)
+  avatarUrl     String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  patients      Patient[]
+  appointments  Appointment[]
+  tickets       Ticket[]
+  nutritionPlans NutritionPlan[]
+}
+
+model Patient {
+  id              String    @id @default(cuid())
+  userId          String
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  name            String
+  email           String
+  phone           String
+  cpf             String?
+  birthDate       DateTime?
+  gender          Gender?
+  height          Float?
+  weight          Float?
+  goal            String?
+  medicalNotes    String?
+  address         String?
+  emergencyContact String?
+  
+  active          Boolean   @default(true)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  appointments    Appointment[]
+  nutritionPlans  NutritionPlan[]
+  messages        Message[]
+
+  @@index([userId])
+}
+
+model Appointment {
+  id          String            @id @default(cuid())
+  userId      String
+  user        User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  patientId   String
+  patient     Patient           @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  
+  dateTime    DateTime
+  duration    Int               @default(60)
+  type        AppointmentType
+  status      AppointmentStatus @default(SCHEDULED)
+  notes       String?
+  meetingUrl  String?
+  
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  @@index([userId, dateTime])
+  @@index([patientId])
+}
+
+model NutritionPlan {
+  id          String      @id @default(cuid())
+  userId      String
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  patientId   String
+  patient     Patient     @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  
+  name        String
+  description String?
+  meals       Json
+  startDate   DateTime
+  endDate     DateTime?
+  status      PlanStatus  @default(ACTIVE)
+  
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@index([patientId])
+  @@index([userId])
+}
+
+model Message {
+  id          String        @id @default(cuid())
+  patientId   String
+  patient     Patient       @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  
+  direction   MessageDirection
+  content     String
+  whatsappId  String?
+  
+  createdAt   DateTime      @default(now())
+
+  @@index([patientId])
+}
+
+model Ticket {
+  id          String        @id @default(cuid())
+  userId      String
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  subject     String
+  description String
+  status      TicketStatus  @default(OPEN)
+  priority    Priority      @default(MEDIUM)
+  
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  
+  messages    TicketMessage[]
+
+  @@index([userId, status])
+}
+
+model TicketMessage {
+  id        String   @id @default(cuid())
+  ticketId  String
+  ticket    Ticket   @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  
+  content   String
+  isStaff   Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([ticketId])
+}
+
+model KnowledgeArticle {
+  id          String   @id @default(cuid())
+  title       String
+  content     String
+  category    String
+  slug        String   @unique
+  published   Boolean  @default(false)
+  order       Int      @default(0)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model AuditLog {
+  id          String   @id @default(cuid())
+  userId      String?
+  action      String
+  entity      String
+  entityId    String?
+  metadata    Json?
+  ipAddress   String?
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model Setting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Role {
+  NUTRITIONIST
+  ADMIN
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+enum AppointmentType {
+  INITIAL
+  FOLLOWUP
+  RETURN
+  EMERGENCY
+  ONLINE
+}
+
+enum AppointmentStatus {
+  SCHEDULED
+  CONFIRMED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+}
+
+enum PlanStatus {
+  ACTIVE
+  COMPLETED
+  CANCELLED
+}
+
+enum TicketStatus {
+  OPEN
+  IN_PROGRESS
+  WAITING
+  RESOLVED
+  CLOSED
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum MessageDirection {
+  INBOUND
+  OUTBOUND
+}
