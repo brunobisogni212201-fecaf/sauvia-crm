@@ -26,7 +26,7 @@ services:
   # Next.js App
   nextjs:
     build:
-      context: .
+      context: ./docker
       dockerfile: Dockerfile
     container_name: sau_via_nextjs
     restart: unless-stopped
@@ -91,6 +91,22 @@ services:
     depends_on:
       - redis
 
+  # Evolute API - WhatsApp
+  evolute-api:
+    image: evolute evolution:latest
+    container_name: sau_via_evolute
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - EVOLUTE_API_KEY=${EVOLUTE_API_KEY}
+      - EVOLUTE_INSTANCE=${EVOLUTE_INSTANCE}
+      - EVOLUTE_SESSION=Evolution
+    volumes:
+      - evolute_data:/evolution/instances
+    networks:
+      - sau_via_network
+
 networks:
   sau_via_network:
     driver: bridge
@@ -98,3 +114,4 @@ networks:
 volumes:
   redis_data:
   n8n_data:
+  evolute_data:
