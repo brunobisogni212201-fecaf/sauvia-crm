@@ -1,0 +1,221 @@
+name: CI/CD - Production Deploy
+
+on:
+  push:
+    branches: [production, main]
+  pull_request:
+    branches: [production, main]
+
+env:
+  NODE_VERSION: '20'
+  PYTHON_VERSION: '3.13'
+  AWS_REGION: ${{ secrets.AWS_REGION }}
+  ECR_REGISTRY: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+
+jobs:
+  # ==================== TESTS ====================
+  test-all:
+    name: Run All Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Python dependencies
+        working-directory: apps/backend
+        run: |
+          pip install uv
+          uv sync --all-extras
+
+      - name: Lint & Test Web
+        working-directory: apps/web
+        run: |
+          pnpm lint
+          pnpm typecheck
+          pnpm build
+
+      - name: Lint & Test Backend
+        working-directory: apps/backend
+        run: |
+          uv run ruff check src/
+          uv run pytest tests/ -v
+
+      - name: Type check Mobile
+        working-directory: apps/mobile
+        run: pnpm tsc --noEmit
+
+  # ==================== DEPLOY WEB (Next.js) ====================
+  deploy-web:
+    name: Deploy Web to AWS
+    needs: test-all
+    if: github.ref == 'refs/heads/production' || (github.ref == 'refs/heads/main' && github.event_name == 'push')
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/web
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.0
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/ecr-login@v2
+
+      - name: Install dependencies
+        run: cd /Users/brunobisogni/Desktop/sauvia-app && pnpm install --frozen-lockfile
+
+      - name: Build Next.js app
+        run: pnpm build
+        env:
+          NODE_ENV: production
+
+      - name: Build Docker image
+        run: |
+          docker build -t ${{ env.ECR_REGISTRY }}/sauvia-web:${{ github.sha }} -f ../../Dockerfile.web .
+          docker tag ${{ env.ECR_REGISTRY }}/sauvia-web:${{ github.sha }} ${{ env.ECR_REGISTRY }}/sauvia-web:latest
+
+      - name: Push to ECR
+        run: |
+          docker push ${{ env.ECR_REGISTRY }}/sauvia-web:${{ github.sha }}
+          docker push ${{ env.ECR_REGISTRY }}/sauvia-web:latest
+
+      - name: Deploy to AWS ECS/Elastic Beanstalk
+        run: |
+          # Update ECS service or trigger deployment
+          aws ecs update-service \
+            --cluster sauvia-web-cluster \
+            --service sauvia-web-service \
+            --force-new-deployment \
+            --region ${{ env.AWS_REGION }} || echo "ECS deployment not configured yet"
+
+  # ==================== DEPLOY BACKEND (FastAPI) ====================
+  deploy-backend:
+    name: Deploy Backend to AWS
+    needs: test-all
+    if: github.ref == 'refs/heads/production' || (github.ref == 'refs/heads/main' && github.event_name == 'push')
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/ecr-login@v2
+
+      - name: Build Docker image
+        run: |
+          docker build -t ${{ env.ECR_REGISTRY }}/sauvia-backend:${{ github.sha }} -f Dockerfile .
+          docker tag ${{ env.ECR_REGISTRY }}/sauvia-backend:${{ github.sha }} ${{ env.ECR_REGISTRY }}/sauvia-backend:latest
+
+      - name: Push to ECR
+        run: |
+          docker push ${{ env.ECR_REGISTRY }}/sauvia-backend:${{ github.sha }}
+          docker push ${{ env.ECR_REGISTRY }}/sauvia-backend:latest
+
+      - name: Deploy to AWS ECS
+        run: |
+          aws ecs update-service \
+            --cluster sauvia-backend-cluster \
+            --service sauvia-backend-service \
+            --force-new-deployment \
+            --region ${{ env.AWS_REGION }} || echo "ECS deployment not configured yet"
+
+      - name: Run database migrations
+        run: |
+          # Run Alembic migrations if needed
+          echo "Database migrations should be run manually or via separate job"
+
+  # ==================== DEPLOY MOBILE (Expo) ====================
+  deploy-mobile:
+    name: Deploy Mobile to EAS
+    needs: test-all
+    if: github.ref == 'refs/heads/production' || (github.ref == 'refs/heads/main' && github.event_name == 'push')
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/mobile
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.0
+
+      - name: Install EAS CLI
+        run: npm install -g eas-cli
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build with EAS
+        run: eas build --platform all --non-interactive --auto-submit
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Submit to stores
+        run: eas submit --platform all --non-interactive
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+
+  # ==================== NOTIFY ====================
+  notify:
+    name: Send Deployment Notification
+    needs: [deploy-web, deploy-backend, deploy-mobile]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send success notification
+        if: success()
+        run: |
+          echo "✅ Deployment successful!"
+          echo "Commit: ${{ github.sha }}"
+          echo "Branch: ${{ github.ref_name }}"
+          # Add Slack/Discord webhook notification here
+
+      - name: Send failure notification
+        if: failure()
+        run: |
+          echo "❌ Deployment failed!"
+          echo "Check the logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          # Add Slack/Discord webhook notification here

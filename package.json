@@ -1,43 +1,17 @@
 {
-  "name": "sauvia-app",
-  "version": "0.1.0",
+  "name": "sauvia",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
-  },
-  "dependencies": {
-    "@auth/core": "^0.34.3",
-    "@aws-sdk/client-cognito-identity-provider": "^3.1026.0",
-    "@aws-sdk/client-ses": "^3.1026.0",
-    "@next-auth/prisma-adapter": "^1.0.7",
-    "@prisma/adapter-pg": "^7.7.0",
-    "@prisma/client": "^7.7.0",
-    "aws-sdk": "^2.1693.0",
-    "chart.js": "^4.5.1",
-    "clsx": "^2.1.1",
-    "framer-motion": "^12.38.0",
-    "lucide-react": "^1.7.0",
-    "next": "16.2.2",
-    "next-auth": "^4.24.13",
-    "pg": "^8.20.0",
-    "prisma": "^7.7.0",
-    "react": "19.2.4",
-    "react-chartjs-2": "^5.3.1",
-    "react-dom": "19.2.4",
-    "tailwind-merge": "^3.5.0"
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/pg": "^8.20.0",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.2",
-    "tailwindcss": "^4",
-    "typescript": "^5"
-  }
+    "prettier": "^3.3.0",
+    "turbo": "^2.4.0"
+  },
+  "packageManager": "pnpm@10.33.0"
 }
