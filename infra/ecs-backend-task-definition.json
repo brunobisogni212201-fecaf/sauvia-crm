@@ -1,14 +1,16 @@
 {
   "family": "sauvia-backend-staging",
   "networkMode": "awsvpc",
-  "requiresCompatibilities": ["FARGATE"],
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
   "cpu": "1024",
   "memory": "2048",
-  "executionRoleArn": "arn:aws:iam::ACCOUNT_ID:role/sauvia-ecs-execution-role-staging",
+  "executionRoleArn": "arn:aws:iam::026544697783:role/sauvia-ecs-execution-role-staging",
   "containerDefinitions": [
     {
       "name": "sauvia-backend",
-      "image": "ACCOUNT_ID.dkr.ecr.REGION.amazonaws.com/sauvia-backend:latest",
+      "image": "026544697783.dkr.ecr.us-east-1.amazonaws.com/sauvia-backend:latest",
       "portMappings": [
         {
           "containerPort": 8000,
@@ -21,30 +23,19 @@
           "value": "staging"
         }
       ],
-      "secrets": [
-        {
-          "name": "DATABASE_URL",
-          "valueFrom": "arn:aws:secretsmanager:REGION:ACCOUNT_ID:secret:sauvia/database/staging-XXXXXX:DATABASE_URL::"
-        },
-        {
-          "name": "REDIS_URL",
-          "valueFrom": "arn:aws:secretsmanager:REGION:ACCOUNT_ID:secret:sauvia/redis/staging-XXXXXX:REDIS_URL::"
-        },
-        {
-          "name": "JWT_SECRET",
-          "valueFrom": "arn:aws:secretsmanager:REGION:ACCOUNT_ID:secret:sauvia/api-keys/staging-XXXXXX:JWT_SECRET::"
-        }
-      ],
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
           "awslogs-group": "/ecs/sauvia-backend-staging",
-          "awslogs-region": "REGION",
+          "awslogs-region": "us-east-1",
           "awslogs-stream-prefix": "ecs"
         }
       },
       "healthCheck": {
-        "command": ["CMD-SHELL", "curl -f http://localhost:8000/health || exit 1"],
+        "command": [
+          "CMD-SHELL",
+          "curl -f http://localhost:8000/docs || exit 1"
+        ],
         "interval": 30,
         "timeout": 5,
         "retries": 3,
