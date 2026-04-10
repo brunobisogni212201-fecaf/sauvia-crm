@@ -3,7 +3,7 @@ services:
     type: web_service
     repo: https://github.com/brunobisogni212201-fecaf/sauvia-crm
     branch: main
-    autoDeploy: false
+    autoDeploy: true
     buildCommand: pip install --no-cache-dir -r requirements.txt
     startCommand: uvicorn src.main:app --host 0.0.0.0 --port $PORT
     rootDir: apps/backend
