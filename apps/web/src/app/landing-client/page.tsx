@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from '@sauvia/ui';
-import { motion } from 'framer-motion';
+import { Button } from "@sauvia/ui";
+import { motion } from "framer-motion";
 import {
   Heart,
   Smartphone,
@@ -16,122 +16,136 @@ import {
   Clock,
   Users,
   Target,
-} from 'lucide-react';
+} from "lucide-react";
 
 export default function LandingClientPage() {
   const features = [
     {
       icon: <Smartphone className="w-8 h-8" />,
-      title: 'Acesse Seu Plano de Qualquer Lugar',
-      description: 'Receba seu plano alimentar direto no celular. Consulte receitas, listas de compras e orientações quando e onde quiser.',
+      title: "Acesse Seu Plano de Qualquer Lugar",
+      description:
+        "Receba seu plano alimentar direto no celular. Consulte receitas, listas de compras e orientações quando e onde quiser.",
     },
     {
       icon: <MessageCircle className="w-8 h-8" />,
-      title: 'Fale Direto Com Seu Nutricionista',
-      description: 'Tire dúvidas em tempo real, envie fotos das refeições e receba feedback imediato do seu profissional.',
+      title: "Fale Direto Com Seu Nutricionista",
+      description:
+        "Tire dúvidas em tempo real, envie fotos das refeições e receba feedback imediato do seu profissional.",
     },
     {
       icon: <TrendingUp className="w-8 h-8" />,
-      title: 'Acompanhe Sua Evolução',
-      description: 'Veja seu progresso com gráficos visuais. Monitore peso, medidas e hábitos ao longo do tempo.',
+      title: "Acompanhe Sua Evolução",
+      description:
+        "Veja seu progresso com gráficos visuais. Monitore peso, medidas e hábitos ao longo do tempo.",
     },
     {
       icon: <Utensils className="w-8 h-8" />,
-      title: 'Receitas Práticas e Deliciosas',
-      description: 'Acesse centenas de receitas saudáveis personalizadas para seu plano. Com filtros de tempo e ingredientes.',
+      title: "Receitas Práticas e Deliciosas",
+      description:
+        "Acesse centenas de receitas saudáveis personalizadas para seu plano. Com filtros de tempo e ingredientes.",
     },
     {
       icon: <Calendar className="w-8 h-8" />,
-      title: 'Agende Consultas Facilmente',
-      description: 'Marque e remarcas consultas com poucos cliques. Receba lembretes automáticos para não esquecer.',
+      title: "Agende Consultas Facilmente",
+      description:
+        "Marque e remarcas consultas com poucos cliques. Receba lembretes automáticos para não esquecer.",
     },
     {
       icon: <Shield className="w-8 h-8" />,
-      title: 'Seus Dados Protegidos',
-      description: 'Informações 100% seguras e privadas. Você controla quem tem acesso aos seus dados de saúde.',
+      title: "Seus Dados Protegidos",
+      description:
+        "Informações 100% seguras e privadas. Você controla quem tem acesso aos seus dados de saúde.",
     },
   ];
 
   const benefits = [
-    'Plano alimentar 100% personalizado',
-    'Acompanhamento contínuo entre consultas',
-    'Receitas adaptadas ao seu gosto',
-    'Lembretes de hidratação e refeições',
-    'Chat direto com seu nutricionista',
-    'Relatórios visuais de progresso',
+    "Plano alimentar 100% personalizado",
+    "Acompanhamento contínuo entre consultas",
+    "Receitas adaptadas ao seu gosto",
+    "Lembretes de hidratação e refeições",
+    "Chat direto com seu nutricionista",
+    "Relatórios visuais de progresso",
   ];
 
   const testimonials = [
     {
-      name: 'Mariana Souza',
-      role: 'Perdeu 15kg em 6 meses',
-      text: 'O app me ajudou a manter a disciplina entre as consultas. As receitas são incríveis e fáceis de fazer!',
+      name: "Mariana Souza",
+      role: "Perdeu 15kg em 6 meses",
+      text: "O app me ajudou a manter a disciplina entre as consultas. As receitas são incríveis e fáceis de fazer!",
       rating: 5,
     },
     {
-      name: 'Pedro Almeida',
-      role: 'Ganho de massa muscular',
-      text: 'Finalmente consegui seguir o plano alimentar direito. O lembrete de refeições fez toda diferença.',
+      name: "Pedro Almeida",
+      role: "Ganho de massa muscular",
+      text: "Finalmente consegui seguir o plano alimentar direito. O lembrete de refeições fez toda diferença.",
       rating: 5,
     },
     {
-      name: 'Juliana Costa',
-      role: 'Reeducação alimentar',
-      text: 'Adoro poder tirar dúvidas rápidas com minha nutri. Me sinto acompanhada o tempo todo!',
+      name: "Juliana Costa",
+      role: "Reeducação alimentar",
+      text: "Adoro poder tirar dúvidas rápidas com minha nutri. Me sinto acompanhada o tempo todo!",
       rating: 5,
     },
   ];
 
   const stats = [
-    { value: '50K+', label: 'Pacientes Ativos' },
-    { value: '95%', label: 'Taxa de Adesão' },
-    { value: '4.9★', label: 'Avaliação Média' },
-    { value: '3x', label: 'Mais Resultados' },
+    { value: "50K+", label: "Pacientes Ativos" },
+    { value: "95%", label: "Taxa de Adesão" },
+    { value: "4.9★", label: "Avaliação Média" },
+    { value: "3x", label: "Mais Resultados" },
   ];
 
   const howItWorks = [
     {
       step: 1,
       icon: <Users className="w-8 h-8" />,
-      title: 'Encontre Seu Nutricionista',
-      description: 'Escolha entre profissionais qualificados ou use seu nutricionista de confiança.',
+      title: "Encontre Seu Nutricionista",
+      description:
+        "Escolha entre profissionais qualificados ou use seu nutricionista de confiança.",
     },
     {
       step: 2,
       icon: <Target className="w-8 h-8" />,
-      title: 'Receba Seu Plano Personalizado',
-      description: 'Após a consulta, receba seu plano alimentar completo no app com todas as orientações.',
+      title: "Receba Seu Plano Personalizado",
+      description:
+        "Após a consulta, receba seu plano alimentar completo no app com todas as orientações.",
     },
     {
       step: 3,
       icon: <Heart className="w-8 h-8" />,
-      title: 'Siga e Acompanhe',
-      description: 'Execute seu plano, registre refeições e veja sua evolução dia após dia.',
+      title: "Siga e Acompanhe",
+      description:
+        "Execute seu plano, registre refeições e veja sua evolução dia após dia.",
     },
     {
       step: 4,
       icon: <TrendingUp className="w-8 h-8" />,
-      title: 'Alcance Seus Objetivos',
-      description: 'Com acompanhamento contínuo, alcance resultados que duram para sempre.',
+      title: "Alcance Seus Objetivos",
+      description:
+        "Com acompanhamento contínuo, alcance resultados que duram para sempre.",
     },
   ];
 
   const faqs = [
     {
-      question: 'Preciso pagar pelo app?',
-      answer: 'Não! O app é gratuito para pacientes. Você só precisa ter um nutricionista que use o Sauvia.',
+      question: "Preciso pagar pelo app?",
+      answer:
+        "Não! O app é gratuito para pacientes. Você só precisa ter um nutricionista que use o Sauvia.",
     },
     {
-      question: 'Meus dados estão seguros?',
-      answer: 'Sim! Usamos criptografia de ponta a ponta. Apenas você e seu nutricionista têm acesso aos seus dados.',
+      question: "Meus dados estão seguros?",
+      answer:
+        "Sim! Usamos criptografia de ponta a ponta. Apenas você e seu nutricionista têm acesso aos seus dados.",
     },
     {
-      question: 'Posso trocar de nutricionista?',
-      answer: 'Sim, você pode trocar de profissional quando quiser. Seus dados permanecem com você.',
+      question: "Posso trocar de nutricionista?",
+      answer:
+        "Sim, você pode trocar de profissional quando quiser. Seus dados permanecem com você.",
     },
     {
-      question: 'O app funciona offline?',
-      answer: 'Sim! Você pode consultar seu plano alimentar e receitas mesmo sem internet.',
+      question: "O app funciona offline?",
+      answer:
+        "Sim! Você pode consultar seu plano alimentar e receitas mesmo sem internet.",
     },
   ];
 
@@ -171,16 +185,13 @@ export default function LandingClientPage() {
               </h1>
 
               <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-                Receba planos alimentares personalizados, acompanhe sua evolução e tenha suporte direto do seu nutricionista. 
-                Tudo em um app lindo e fácil de usar.
+                Receba planos alimentares personalizados, acompanhe sua evolução
+                e tenha suporte direto do seu nutricionista. Tudo em um app
+                lindo e fácil de usar.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <Button
-                  variant="secondary"
-                  size="lg"
-                  className="group"
-                >
+                <Button variant="secondary" size="lg" className="group">
                   Baixar App Grátis
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
@@ -232,7 +243,8 @@ export default function LandingClientPage() {
               Tudo Que Você Precisa Para Alcançar Seus Objetivos
             </h2>
             <p className="text-xl text-on-surface-variant max-w-3xl mx-auto">
-              Ferramentas inteligentes que tornam sua jornada alimentar mais fácil, divertida e eficaz
+              Ferramentas inteligentes que tornam sua jornada alimentar mais
+              fácil, divertida e eficaz
             </p>
           </div>
 
@@ -270,7 +282,8 @@ export default function LandingClientPage() {
                 Resultados Que Você Vai Sentir
               </h2>
               <p className="text-xl text-on-surface-variant mb-8">
-                Pacientes que usam o Sauvia têm 3x mais chances de alcançar seus objetivos de saúde.
+                Pacientes que usam o Sauvia têm 3x mais chances de alcançar seus
+                objetivos de saúde.
               </p>
               <ul className="space-y-4">
                 {benefits.map((benefit, index) => (
@@ -292,7 +305,9 @@ export default function LandingClientPage() {
                 transition={{ duration: 3, repeat: Infinity }}
               >
                 <div className="text-2xl font-bold text-primary">95%</div>
-                <div className="text-sm text-on-surface-variant">Adesão ao plano</div>
+                <div className="text-sm text-on-surface-variant">
+                  Adesão ao plano
+                </div>
               </motion.div>
               <motion.div
                 className="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-lg p-4"
@@ -300,7 +315,9 @@ export default function LandingClientPage() {
                 transition={{ duration: 3, repeat: Infinity }}
               >
                 <div className="text-2xl font-bold text-primary">4.9★</div>
-                <div className="text-sm text-on-surface-variant">Avaliação dos usuários</div>
+                <div className="text-sm text-on-surface-variant">
+                  Avaliação dos usuários
+                </div>
               </motion.div>
             </div>
           </div>
@@ -371,15 +388,22 @@ export default function LandingClientPage() {
               >
                 <div className="flex gap-1 mb-4">
                   {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                    <Star
+                      key={i}
+                      className="w-5 h-5 fill-yellow-400 text-yellow-400"
+                    />
                   ))}
                 </div>
                 <p className="text-on-surface-variant mb-6 leading-relaxed">
-                  "{testimonial.text}"
+                  &ldquo;{testimonial.text}&rdquo;
                 </p>
                 <div>
-                  <div className="font-semibold text-on-surface">{testimonial.name}</div>
-                  <div className="text-sm text-on-surface-variant">{testimonial.role}</div>
+                  <div className="font-semibold text-on-surface">
+                    {testimonial.name}
+                  </div>
+                  <div className="text-sm text-on-surface-variant">
+                    {testimonial.role}
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -419,7 +443,8 @@ export default function LandingClientPage() {
               Comece Sua Transformação Hoje
             </h2>
             <p className="text-xl text-white/90 mb-8">
-              Baixe o app gratuito e dê o primeiro passo para uma vida mais saudável
+              Baixe o app gratuito e dê o primeiro passo para uma vida mais
+              saudável
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button variant="secondary" size="lg" className="group">
@@ -444,7 +469,9 @@ export default function LandingClientPage() {
       <footer className="py-12 bg-on-surface text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="text-2xl font-bold font-display mb-4">Sauvia</div>
-          <p className="text-white/70 mb-4">Sua jornada para uma vida mais saudável</p>
+          <p className="text-white/70 mb-4">
+            Sua jornada para uma vida mais saudável
+          </p>
           <p className="text-white/50 text-sm">
             © 2024 Sauvia. Todos os direitos reservados.
           </p>

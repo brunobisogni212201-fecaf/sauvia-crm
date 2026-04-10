@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from '@sauvia/ui';
-import { motion } from 'framer-motion';
+import { Button } from "@sauvia/ui";
+import { motion } from "framer-motion";
 import {
   CalendarDays,
   Users,
@@ -15,145 +15,155 @@ import {
   BarChart3,
   Shield,
   Zap,
-} from 'lucide-react';
+} from "lucide-react";
 
 export default function LandingNutritionistPage() {
   const features = [
     {
       icon: <Users className="w-8 h-8" />,
-      title: 'Gestão Completa de Pacientes',
-      description: 'Centralize todas as informações dos seus pacientes em um só lugar. Histórico completo, evoluções e dados antropométricos organizados.',
+      title: "Gestão Completa de Pacientes",
+      description:
+        "Centralize todas as informações dos seus pacientes em um só lugar. Histórico completo, evoluções e dados antropométricos organizados.",
     },
     {
       icon: <CalendarDays className="w-8 h-8" />,
-      title: 'Agenda Inteligente',
-      description: 'Gerencie consultas presenciais e online com agenda integrada. Confirmação automática e lembretes para reduzir faltas.',
+      title: "Agenda Inteligente",
+      description:
+        "Gerencie consultas presenciais e online com agenda integrada. Confirmação automática e lembretes para reduzir faltas.",
     },
     {
       icon: <FileText className="w-8 h-8" />,
-      title: 'Planos Alimentares Automatizados',
-      description: 'Crie planos nutricionais personalizados com cálculo automático de macros e distribuição de refeições.',
+      title: "Planos Alimentares Automatizados",
+      description:
+        "Crie planos nutricionais personalizados com cálculo automático de macros e distribuição de refeições.",
     },
     {
       icon: <MessageSquare className="w-8 h-8" />,
-      title: 'Comunicação Integrada',
-      description: 'Chat com pacientes, envio de materiais educativos e acompanhamento remoto em tempo real.',
+      title: "Comunicação Integrada",
+      description:
+        "Chat com pacientes, envio de materiais educativos e acompanhamento remoto em tempo real.",
     },
     {
       icon: <BarChart3 className="w-8 h-8" />,
-      title: 'Evolução e Métricas',
-      description: 'Dashboards visuais com indicadores de progresso dos pacientes. Acompanhe adesão e resultados.',
+      title: "Evolução e Métricas",
+      description:
+        "Dashboards visuais com indicadores de progresso dos pacientes. Acompanhe adesão e resultados.",
     },
     {
       icon: <Shield className="w-8 h-8" />,
-      title: 'LGPD Compliant',
-      description: 'Seus dados e dos pacientes protegidos com criptografia de ponta a ponta e controle de consentimento.',
+      title: "LGPD Compliant",
+      description:
+        "Seus dados e dos pacientes protegidos com criptografia de ponta a ponta e controle de consentimento.",
     },
   ];
 
   const benefits = [
-    'Atenda mais pacientes em menos tempo',
-    'Redu faltas em até 60%',
-    'Automatize cálculos nutricionais',
-    'Acesse de qualquer lugar',
-    'Acompanhamento remoto eficiente',
-    'Aumente seu faturamento',
+    "Atenda mais pacientes em menos tempo",
+    "Redu faltas em até 60%",
+    "Automatize cálculos nutricionais",
+    "Acesse de qualquer lugar",
+    "Acompanhamento remoto eficiente",
+    "Aumente seu faturamento",
   ];
 
   const testimonials = [
     {
-      name: 'Dra. Carolina Mendes',
-      role: 'Nutricionista Clínica',
-      text: 'O Sauvia transformou minha prática. Consigo atender 40% mais pacientes e ainda tenho mais tempo para me dedicar a cada caso.',
+      name: "Dra. Carolina Mendes",
+      role: "Nutricionista Clínica",
+      text: "O Sauvia transformou minha prática. Consigo atender 40% mais pacientes e ainda tenho mais tempo para me dedicar a cada caso.",
       rating: 5,
     },
     {
-      name: 'Dr. Rafael Costa',
-      role: 'Nutricionista Esportivo',
-      text: 'A plataforma é intuitiva e completa. Meus pacientes adoraram o acompanhamento remoto e os planos digitais.',
+      name: "Dr. Rafael Costa",
+      role: "Nutricionista Esportivo",
+      text: "A plataforma é intuitiva e completa. Meus pacientes adoraram o acompanhamento remoto e os planos digitais.",
       rating: 5,
     },
     {
-      name: 'Dra. Fernanda Lima',
-      role: 'Nutrição Materno-Infantil',
-      text: 'Reduzi 70% do tempo administrativo. Agora foco no que realmente importa: meus pacientes.',
+      name: "Dra. Fernanda Lima",
+      role: "Nutrição Materno-Infantil",
+      text: "Reduzi 70% do tempo administrativo. Agora foco no que realmente importa: meus pacientes.",
       rating: 5,
     },
   ];
 
   const stats = [
-    { value: '2.500+', label: 'Nutricionistas Ativos' },
-    { value: '150K+', label: 'Pacientes Atendidos' },
-    { value: '94%', label: 'Taxa de Satisfação' },
-    { value: '3x', label: 'Mais Produtividade' },
+    { value: "2.500+", label: "Nutricionistas Ativos" },
+    { value: "150K+", label: "Pacientes Atendidos" },
+    { value: "94%", label: "Taxa de Satisfação" },
+    { value: "3x", label: "Mais Produtividade" },
   ];
 
   const pricingPlans = [
     {
-      name: 'Starter',
-      price: 'R$ 97',
-      period: '/mês',
-      description: 'Ideal para quem está começando',
+      name: "Starter",
+      price: "R$ 97",
+      period: "/mês",
+      description: "Ideal para quem está começando",
       features: [
-        'Até 30 pacientes',
-        'Agenda completa',
-        'Planos alimentares básicos',
-        'Chat com pacientes',
-        'Suporte por email',
+        "Até 30 pacientes",
+        "Agenda completa",
+        "Planos alimentares básicos",
+        "Chat com pacientes",
+        "Suporte por email",
       ],
-      cta: 'Começar Grátis',
+      cta: "Começar Grátis",
       popular: false,
     },
     {
-      name: 'Professional',
-      price: 'R$ 197',
-      period: '/mês',
-      description: 'Para nutricionistas estabelecidos',
+      name: "Professional",
+      price: "R$ 197",
+      period: "/mês",
+      description: "Para nutricionistas estabelecidos",
       features: [
-        'Até 100 pacientes',
-        'Tudo do Starter +',
-        'Planos avançados com macros',
-        'Dashboard de evolução',
-        'Consultas online',
-        'Suporte prioritário',
+        "Até 100 pacientes",
+        "Tudo do Starter +",
+        "Planos avançados com macros",
+        "Dashboard de evolução",
+        "Consultas online",
+        "Suporte prioritário",
       ],
-      cta: 'Mais Popular',
+      cta: "Mais Popular",
       popular: true,
     },
     {
-      name: 'Enterprise',
-      price: 'R$ 397',
-      period: '/mês',
-      description: 'Para clínicas e equipes',
+      name: "Enterprise",
+      price: "R$ 397",
+      period: "/mês",
+      description: "Para clínicas e equipes",
       features: [
-        'Pacientes ilimitados',
-        'Tudo do Professional +',
-        'Múltiplos profissionais',
-        'Relatórios gerenciais',
-        'API personalizada',
-        'Treinamento dedicado',
+        "Pacientes ilimitados",
+        "Tudo do Professional +",
+        "Múltiplos profissionais",
+        "Relatórios gerenciais",
+        "API personalizada",
+        "Treinamento dedicado",
       ],
-      cta: 'Falar com Vendas',
+      cta: "Falar com Vendas",
       popular: false,
     },
   ];
 
   const faqs = [
     {
-      question: 'Quanto tempo leva para começar?',
-      answer: 'Menos de 5 minutos! Crie sua conta, configure seu perfil e já pode começar a cadastrar pacientes. Sem complicação.',
+      question: "Quanto tempo leva para começar?",
+      answer:
+        "Menos de 5 minutos! Crie sua conta, configure seu perfil e já pode começar a cadastrar pacientes. Sem complicação.",
     },
     {
-      question: 'Posso migrar dados de outro sistema?',
-      answer: 'Sim! Oferecemos importação automática de planilhas e suporte dedicado para migração dos seus dados.',
+      question: "Posso migrar dados de outro sistema?",
+      answer:
+        "Sim! Oferecemos importação automática de planilhas e suporte dedicado para migração dos seus dados.",
     },
     {
-      question: 'Tem contrato de fidelidade?',
-      answer: 'Não. Você pode cancelar a qualquer momento sem multas. Acreditamos que você ficará pela qualidade.',
+      question: "Tem contrato de fidelidade?",
+      answer:
+        "Não. Você pode cancelar a qualquer momento sem multas. Acreditamos que você ficará pela qualidade.",
     },
     {
-      question: 'Os dados estão seguros?',
-      answer: 'Absolutamente. Usamos criptografia de ponta a ponta, backups automáticos e estamos 100% em conformidade com a LGPD.',
+      question: "Os dados estão seguros?",
+      answer:
+        "Absolutamente. Usamos criptografia de ponta a ponta, backups automáticos e estamos 100% em conformidade com a LGPD.",
     },
   ];
 
@@ -189,20 +199,19 @@ export default function LandingNutritionistPage() {
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 font-display leading-tight">
                 Transforme Sua Prática de Nutrição em um Negócio
-                <span className="block text-secondary mt-2">Altamente Lucrativo</span>
+                <span className="block text-secondary mt-2">
+                  Altamente Lucrativo
+                </span>
               </h1>
 
               <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-                O Sauvia é o CRM completo que automatiza a gestão de pacientes, planos alimentares e acompanhamentos. 
-                Foque no que importa: transformar vidas através da nutrição.
+                O Sauvia é o CRM completo que automatiza a gestão de pacientes,
+                planos alimentares e acompanhamentos. Foque no que importa:
+                transformar vidas através da nutrição.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <Button
-                  variant="secondary"
-                  size="lg"
-                  className="group"
-                >
+                <Button variant="secondary" size="lg" className="group">
                   Comece Grátis por 14 Dias
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
@@ -216,7 +225,8 @@ export default function LandingNutritionistPage() {
               </div>
 
               <p className="mt-6 text-white/80 text-sm">
-                ✓ Sem cartão de crédito ✓ Setup em 5 minutos ✓ Cancele quando quiser
+                ✓ Sem cartão de crédito ✓ Setup em 5 minutos ✓ Cancele quando
+                quiser
               </p>
             </motion.div>
           </div>
@@ -254,7 +264,8 @@ export default function LandingNutritionistPage() {
               Tudo Que Você Precisa Para Escalar Sua Clínica
             </h2>
             <p className="text-xl text-on-surface-variant max-w-3xl mx-auto">
-              Ferramentas profissionais integradas que automatizam o trabalho administrativo e potencializam seus resultados
+              Ferramentas profissionais integradas que automatizam o trabalho
+              administrativo e potencializam seus resultados
             </p>
           </div>
 
@@ -292,7 +303,8 @@ export default function LandingNutritionistPage() {
                 Resultados Reais Para Profissionais Reais
               </h2>
               <p className="text-xl text-on-surface-variant mb-8">
-                Nutricionistas que usam o Sauvia reportam melhorias significativas em produtividade e satisfação.
+                Nutricionistas que usam o Sauvia reportam melhorias
+                significativas em produtividade e satisfação.
               </p>
               <ul className="space-y-4">
                 {benefits.map((benefit, index) => (
@@ -314,7 +326,9 @@ export default function LandingNutritionistPage() {
                 transition={{ duration: 3, repeat: Infinity }}
               >
                 <div className="text-2xl font-bold text-primary">+40%</div>
-                <div className="text-sm text-on-surface-variant">Mais pacientes</div>
+                <div className="text-sm text-on-surface-variant">
+                  Mais pacientes
+                </div>
               </motion.div>
               <motion.div
                 className="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-lg p-4"
@@ -322,7 +336,9 @@ export default function LandingNutritionistPage() {
                 transition={{ duration: 3, repeat: Infinity }}
               >
                 <div className="text-2xl font-bold text-primary">-60%</div>
-                <div className="text-sm text-on-surface-variant">Faltas reduzidas</div>
+                <div className="text-sm text-on-surface-variant">
+                  Faltas reduzidas
+                </div>
               </motion.div>
             </div>
           </div>
@@ -353,15 +369,22 @@ export default function LandingNutritionistPage() {
               >
                 <div className="flex gap-1 mb-4">
                   {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                    <Star
+                      key={i}
+                      className="w-5 h-5 fill-yellow-400 text-yellow-400"
+                    />
                   ))}
                 </div>
                 <p className="text-on-surface-variant mb-6 leading-relaxed">
-                  "{testimonial.text}"
+                  &ldquo;{testimonial.text}&rdquo;
                 </p>
                 <div>
-                  <div className="font-semibold text-on-surface">{testimonial.name}</div>
-                  <div className="text-sm text-on-surface-variant">{testimonial.role}</div>
+                  <div className="font-semibold text-on-surface">
+                    {testimonial.name}
+                  </div>
+                  <div className="text-sm text-on-surface-variant">
+                    {testimonial.role}
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -391,8 +414,8 @@ export default function LandingNutritionistPage() {
                 transition={{ delay: index * 0.1 }}
                 className={`relative rounded-2xl p-8 ${
                   plan.popular
-                    ? 'bg-gradient-to-br from-primary to-primary-dark text-white shadow-xl scale-105'
-                    : 'bg-white shadow-md'
+                    ? "bg-gradient-to-br from-primary to-primary-dark text-white shadow-xl scale-105"
+                    : "bg-white shadow-md"
                 }`}
               >
                 {plan.popular && (
@@ -401,17 +424,29 @@ export default function LandingNutritionistPage() {
                   </div>
                 )}
                 <div className="text-center mb-6">
-                  <h3 className={`text-2xl font-bold mb-2 font-display ${plan.popular ? 'text-white' : 'text-on-surface'}`}>
+                  <h3
+                    className={`text-2xl font-bold mb-2 font-display ${plan.popular ? "text-white" : "text-on-surface"}`}
+                  >
                     {plan.name}
                   </h3>
-                  <p className={`text-sm mb-4 ${plan.popular ? 'text-white/90' : 'text-on-surface-variant'}`}>
+                  <p
+                    className={`text-sm mb-4 ${plan.popular ? "text-white/90" : "text-on-surface-variant"}`}
+                  >
                     {plan.description}
                   </p>
                   <div className="flex items-baseline justify-center gap-1">
-                    <span className={`text-4xl font-bold font-display ${plan.popular ? 'text-white' : 'text-primary'}`}>
+                    <span
+                      className={`text-4xl font-bold font-display ${plan.popular ? "text-white" : "text-primary"}`}
+                    >
                       {plan.price}
                     </span>
-                    <span className={plan.popular ? 'text-white/90' : 'text-on-surface-variant'}>
+                    <span
+                      className={
+                        plan.popular
+                          ? "text-white/90"
+                          : "text-on-surface-variant"
+                      }
+                    >
                       {plan.period}
                     </span>
                   </div>
@@ -419,15 +454,23 @@ export default function LandingNutritionistPage() {
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <CheckCircle2 className={`w-5 h-5 flex-shrink-0 mt-0.5 ${plan.popular ? 'text-white' : 'text-primary'}`} />
-                      <span className={plan.popular ? 'text-white/90' : 'text-on-surface-variant'}>
+                      <CheckCircle2
+                        className={`w-5 h-5 flex-shrink-0 mt-0.5 ${plan.popular ? "text-white" : "text-primary"}`}
+                      />
+                      <span
+                        className={
+                          plan.popular
+                            ? "text-white/90"
+                            : "text-on-surface-variant"
+                        }
+                      >
                         {feature}
                       </span>
                     </li>
                   ))}
                 </ul>
                 <Button
-                  variant={plan.popular ? 'secondary' : 'primary'}
+                  variant={plan.popular ? "secondary" : "primary"}
                   className="w-full"
                   size="lg"
                 >
@@ -471,7 +514,8 @@ export default function LandingNutritionistPage() {
               Pronto Para Transformar Sua Prática?
             </h2>
             <p className="text-xl text-white/90 mb-8">
-              Junte-se a mais de 2.500 nutricionistas que já estão usando o Sauvia para crescer
+              Junte-se a mais de 2.500 nutricionistas que já estão usando o
+              Sauvia para crescer
             </p>
             <Button variant="secondary" size="lg" className="group">
               Comece Grátis por 14 Dias
