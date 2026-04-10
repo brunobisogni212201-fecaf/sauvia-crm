@@ -47,3 +47,4 @@ npm-debug.log*
 *.pem
 *.tsbuildinfo
 _legacy/
+.vercel

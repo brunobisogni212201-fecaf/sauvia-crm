@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 from datetime import datetime
+import uuid
 
 from src.domain.value_objects.enums import Gender
 
@@ -7,7 +8,10 @@ from src.domain.value_objects.enums import Gender
 @dataclass
 class Patient:
     id: str
-    user_id: str
+    user_id: str  # Nutritionist owner
+    uuid: str = field(
+        default_factory=lambda: str(uuid.uuid4())
+    )  # Sync key for mobile app
     name: str
     email: str
     phone: str

@@ -8,7 +8,10 @@
       "Bash(git commit *)",
       "Bash(aws *)",
       "Bash(curl *)",
-      "Bash(jq *)"
+      "Bash(jq *)",
+      "Bash(echo *)",
+      "Bash(mkdir *)",
+      "Bash(pnpm add *)"
     ]
   },
   "$version": 3

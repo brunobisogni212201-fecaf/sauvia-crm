@@ -1,0 +1,13 @@
+{
+  "name": "@sauvia/ui-icons",
+  "version": "1.0.0",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "lucide-react": "^1.8.0",
+    "lucide-react-native": "^1.8.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
