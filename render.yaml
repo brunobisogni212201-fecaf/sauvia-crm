@@ -1,0 +1,35 @@
+services:
+  - name: sau via-crm-backend
+    type: web_service
+    repo: https://github.com/brunobisogni212201-fecaf/sauvia-crm
+    branch: main
+    autoDeploy: false
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn src.main:app --host 0.0.0.0 --port $PORT
+    rootDir: apps/backend
+    envVars:
+      - key: APP_ENV
+        value: production
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: SECRET_KEY
+        sync: false
+      - key: COGNITO_CLIENT_SECRET
+        sync: false
+      - key: COGNITO_CLIENT_ID
+        value: "2fs7g0dd2c7rp3n4aas53c18p0"
+      - key: COGNITO_USER_POOL_ID
+        value: "us-east-1_Zftb4N8wn"
+      - key: COGNITO_REGION
+        value: "us-east-1"
+      - key: AWS_ACCESS_KEY_ID
+        sync: false
+      - key: AWS_SECRET_ACCESS_KEY
+        sync: false
+      - key: AWS_REGION
+        value: "us-east-1"
+      - key: CORS_ORIGINS
+        value: "https://sauvia.qzz.io,https://sauvia-app.vercel.app,http://localhost:3000"
