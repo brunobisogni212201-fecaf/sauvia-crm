@@ -35,7 +35,7 @@
     "plugins": ["expo-router"],
     "extra": {
       "eas": {
-        "projectId": "sauvia-mobile"
+        "projectId": "461e7642-fc27-4813-9341-b76459b28fd4"
       }
     },
     "env": {

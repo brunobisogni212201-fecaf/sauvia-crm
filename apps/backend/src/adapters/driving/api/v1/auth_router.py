@@ -1,6 +1,7 @@
 import boto3
 from datetime import datetime, timezone
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Header, Query
+from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 from src.config import settings
 
@@ -61,6 +62,35 @@ def create_jwt_token(user_sub: str, email: str) -> tuple[str, str]:
         algorithm="HS256",
     )
     return access_token, refresh_token
+
+
+@router.get("/callback")
+async def auth_callback(
+    code: str = Query(...),
+    state: str = Query("web")  # Pode ser 'web' ou 'mobile'
+):
+    """
+    URL fixa para processar o token do Cognito.
+    Pode redirecionar para o Web App ou para o Mobile via Deep Link.
+    """
+    try:
+        # 1. Trocar o código pelos tokens no Cognito
+        # Nota: Para trocar o código, o Cognito exige uma chamada POST para o endpoint /oauth2/token
+        # Aqui, como o front já costuma ter os tokens via SDK, esta rota serve para orquestrar
+        # Se o fluxo for Authorization Code no backend, implementaríamos a troca aqui.
+        
+        # 2. Lógica de Redirecionamento Baseada no 'state' ou parâmetros de busca
+        if state == "mobile":
+            # Redireciona para o deep-link do app mobile
+            return RedirectResponse(url=f"sauvia://callback?code={code}")
+        
+        # Redireciona para o dashboard web por padrão
+        # Buscamos a primeira URL do CORS como base
+        base_web_url = settings.cors_origins.split(",")[0]
+        return RedirectResponse(url=f"{base_web_url}/dashboard?code={code}")
+
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Callback failed: {str(e)}")
 
 
 @router.post("/register", response_model=TokenResponse)

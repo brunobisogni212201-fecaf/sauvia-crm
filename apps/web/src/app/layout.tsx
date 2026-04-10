@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Manrope, Plus_Jakarta_Sans } from "next/font/google";
+import { Instrument_Serif, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
-const manrope = Manrope({
+const instrumentSerif = Instrument_Serif({
   variable: "--font-display",
   subsets: ["latin"],
+  weight: "400",
 });
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -15,7 +16,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: "Sauvia - CRM para Nutricionistas",
   description:
-    "Plataforma completa para nutricionistas gerenciarem pacientes, consultas e planos alimentares.",
+    "O CRM que não gerencia apenas dados, orquestra relacionamentos. Simplifique sua prática clínica.",
 };
 
 export default function RootLayout({
@@ -25,7 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className={`${manrope.variable} ${plusJakarta.variable} antialiased`}>
+      <body className={`${instrumentSerif.variable} ${plusJakarta.variable} antialiased`}>
         {children}
       </body>
     </html>
