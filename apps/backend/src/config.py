@@ -27,8 +27,8 @@ class Settings(BaseSettings):
     # AWS Cognito
     cognito_user_pool_id: str = "us-east-1_TAZzYtUAo"
     cognito_region: str = "us-east-1"
-    cognito_client_id: str = "6tup0p24n1ds40c467pq30b655"
-    cognito_client_secret: str = "8chosi55qhqi8pkfv0dq465n4kebsebjokqe9mjq05b7o4r64fo"
+    cognito_client_id: str = "2rk8s9rt2ve4kdui05gcuic3bi"
+    cognito_client_secret: str = ""
     cognito_domain: str = "https://sauvia-app.auth.us-east-1.amazoncognito.com"
 
     # AWS Credentials

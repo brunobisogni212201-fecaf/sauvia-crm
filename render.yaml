@@ -17,14 +17,10 @@ services:
         sync: false
       - key: SECRET_KEY
         sync: false
-      - key: COGNITO_CLIENT_SECRET
-        sync: false
       - key: COGNITO_CLIENT_ID
-        value: "6tup0p24n1ds40c467pq30b655"
+        value: "2rk8s9rt2ve4kdui05gcuic3bi"
       - key: COGNITO_USER_POOL_ID
         value: "us-east-1_TAZzYtUAo"
-      - key: COGNITO_CLIENT_SECRET
-        value: "8chosi55qhqi8pkfv0dq465n4kebsebjokqe9mjq05b7o4r64fo"
       - key: COGNITO_DOMAIN
         value: "https://sauvia-app.auth.us-east-1.amazoncognito.com"
       - key: COGNITO_REGION
