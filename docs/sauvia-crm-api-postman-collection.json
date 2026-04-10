@@ -1,0 +1,301 @@
+{
+  "info": {
+    "name": "Sauvia CRM API",
+    "description": "API collection for Sauvia CRM - Nutrition Management Platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://sauvia-crm-backend-service.onrender.com",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/health",
+            "description": "Check if API is running"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/auth/register",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"bruno@oceanoazul.dev.br\",\n  \"password\": \"Amor131313@\",\n  \"name\": \"Bruno Bisogni\",\n  \"cpf\": \"31603566805\"\n}"
+            },
+            "description": "Register a new user"
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/auth/login",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"bruno@oceanoazul.dev.br\",\n  \"password\": \"Amor131313@\"\n}"
+            },
+            "description": "Login with email and password"
+          }
+        },
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/auth/me",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_ACCESS_TOKEN"
+              }
+            ],
+            "description": "Get current logged in user"
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/auth/logout",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_ACCESS_TOKEN"
+              }
+            ],
+            "description": "Logout current user"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Patients",
+      "item": [
+        {
+          "name": "List Patients",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/patients?page=1&page_size=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "patients"],
+              "query": [
+                { "key": "page", "value": "1" },
+                { "key": "page_size", "value": "20" }
+              ]
+            },
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_ACCESS_TOKEN"
+              }
+            ],
+            "description": "List all patients (paginated)"
+          }
+        },
+        {
+          "name": "Create Patient",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/patients",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_ACCESS_TOKEN"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"João Silva\",\n  \"email\": \"joao@email.com\",\n  \"phone\": \"+5511999999999\",\n  \"cpf\": \"12345678901\",\n  \"birth_date\": \"1990-01-15\",\n  \"gender\": \"male\",\n  \"height\": 1.75,\n  \"weight\": 70.5,\n  \"goal\": \"Perder peso\",\n  \"address\": {\n    \"street\": \"Rua Example\",\n    \"city\": \"São Paulo\",\n    \"state\": \"SP\",\n    \"zip_code\": \"01234-567\"\n  }\n}"
+            },
+            "description": "Create a new patient"
+          }
+        },
+        {
+          "name": "Get Patient",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/patients/PATIENT_ID",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_ACCESS_TOKEN"
+              }
+            ],
+            "description": "Get specific patient by ID"
+          }
+        },
+        {
+          "name": "Update Patient",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v1/patients/PATIENT_ID",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_ACCESS_TOKEN"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"João Silva Updated\",\n  \"phone\": \"+5511988888888\"\n}"
+            },
+            "description": "Update patient information"
+          }
+        },
+        {
+          "name": "Delete Patient",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/patients/PATIENT_ID",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_ACCESS_TOKEN"
+              }
+            ],
+            "description": "Delete a patient"
+          }
+        }
+      ]
+    },
+    {
+      "name": "LGPD",
+      "item": [
+        {
+          "name": "Export User Data",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/lgpd/export",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_ACCESS_TOKEN"
+              }
+            ],
+            "description": "Export all user data (GDPR/LGPD compliance)"
+          }
+        },
+        {
+          "name": "Get Consents",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/lgpd/consents",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_ACCESS_TOKEN"
+              }
+            ],
+            "description": "Get user's consent preferences"
+          }
+        },
+        {
+          "name": "Update Consents",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/v1/lgpd/consents",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_ACCESS_TOKEN"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"marketing\": true,\n  \"analytics\": false,\n  \"cookies\": true\n}"
+            },
+            "description": "Update user's consent preferences"
+          }
+        },
+        {
+          "name": "Get Audit Logs",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/lgpd/audit-logs",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_ACCESS_TOKEN"
+              }
+            ],
+            "description": "Get audit trail for user's data"
+          }
+        },
+        {
+          "name": "Delete Account",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/v1/lgpd/delete-account",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer YOUR_ACCESS_TOKEN"
+              }
+            ],
+            "description": "Delete user account and all data (LGPD right to deletion)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "OAuth Callback",
+      "item": [
+        {
+          "name": "OAuth Callback",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/auth/callback?code=AUTH_CODE&state=web",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "auth", "callback"],
+              "query": [
+                { "key": "code", "value": "AUTH_CODE" },
+                { "key": "state", "value": "web" }
+              ]
+            },
+            "description": "OAuth callback URL - state can be 'web' or 'mobile'"
+          }
+        }
+      ]
+    }
+  ]
+}

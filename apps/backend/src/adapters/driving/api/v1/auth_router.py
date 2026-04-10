@@ -11,6 +11,24 @@ from src.config import settings
 router = APIRouter()
 
 
+class LoginRequest(BaseModel):
+    email: str
+    password: str
+
+
+class RegisterRequest(BaseModel):
+    email: str
+    password: str
+    name: str
+    cpf: str | None = None
+
+
+class TokenResponse(BaseModel):
+    access_token: str
+    refresh_token: str
+    token_type: str = "bearer"
+
+
 def get_cognito_client():
     return boto3.client(
         "cognito-idp",
