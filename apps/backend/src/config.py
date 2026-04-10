@@ -25,11 +25,11 @@ class Settings(BaseSettings):
     redis_url: str = "redis://localhost:6379/0"
 
     # AWS Cognito
-    cognito_user_pool_id: str = "us-east-1_Zftb4N8wn"
+    cognito_user_pool_id: str = "us-east-1_TAZzYtUAo"
     cognito_region: str = "us-east-1"
-    cognito_client_id: str = "2fs7g0dd2c7rp3n4aas53c18p0"
-    cognito_client_secret: str = ""
-    cognito_domain: str = ""
+    cognito_client_id: str = "6tup0p24n1ds40c467pq30b655"
+    cognito_client_secret: str = "8chosi55qhqi8pkfv0dq465n4kebsebjokqe9mjq05b7o4r64fo"
+    cognito_domain: str = "https://sauvia-app.auth.us-east-1.amazoncognito.com"
 
     # AWS Credentials
     aws_access_key_id: str = ""
