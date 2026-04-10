@@ -11,7 +11,10 @@
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#006b2c"
+      "backgroundColor": "#006b2c",
+      "dark": {
+        "backgroundColor": "#004d1f"
+      }
     },
     "ios": {
       "supportsTablet": true,
@@ -34,6 +37,9 @@
       "eas": {
         "projectId": "sauvia-mobile"
       }
+    },
+    "env": {
+      "EXPO_PUBLIC_API_URL": "https://sauvia-crm-backend-service.onrender.com/api/v1"
     }
   }
 }
