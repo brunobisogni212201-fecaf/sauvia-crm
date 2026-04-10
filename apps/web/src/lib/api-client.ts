@@ -1,19 +1,31 @@
+import { getCurrentSession } from "./cognito";
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000/api/v1";
 
 interface RequestOptions extends RequestInit {
+  /** Pass a token manually — if omitted, the Cognito session token is used. */
   token?: string;
+  /** Set to true to skip auto-injecting the JWT. */
+  skipAuth?: boolean;
 }
 
 async function request<T>(
   endpoint: string,
   options: RequestOptions = {},
 ): Promise<T> {
-  const { token, headers, ...rest } = options;
+  const { token, skipAuth, headers, ...rest } = options;
+
+  // Auto-inject JWT from Cognito session when no explicit token is provided
+  let bearerToken = token;
+  if (!bearerToken && !skipAuth) {
+    const session = await getCurrentSession();
+    bearerToken = session?.accessToken;
+  }
 
   const res = await fetch(`${API_URL}${endpoint}`, {
     headers: {
       "Content-Type": "application/json",
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      ...(bearerToken ? { Authorization: `Bearer ${bearerToken}` } : {}),
       ...headers,
     },
     ...rest,

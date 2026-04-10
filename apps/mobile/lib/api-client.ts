@@ -1,19 +1,30 @@
+import { getStoredToken } from "./cognito";
+
 const API_URL = process.env.EXPO_PUBLIC_API_URL ?? "http://localhost:8000/api/v1";
 
 interface RequestOptions extends RequestInit {
+  /** Pass a token manually — if omitted, the SecureStore token is used. */
   token?: string;
+  /** Set to true to skip auto-injecting the JWT. */
+  skipAuth?: boolean;
 }
 
 async function request<T>(
   endpoint: string,
   options: RequestOptions = {},
 ): Promise<T> {
-  const { token, headers, ...rest } = options;
+  const { token, skipAuth, headers, ...rest } = options;
+
+  // Auto-inject JWT from SecureStore when no explicit token is provided
+  let bearerToken = token;
+  if (!bearerToken && !skipAuth) {
+    bearerToken = (await getStoredToken()) ?? undefined;
+  }
 
   const res = await fetch(`${API_URL}${endpoint}`, {
     headers: {
       "Content-Type": "application/json",
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      ...(bearerToken ? { Authorization: `Bearer ${bearerToken}` } : {}),
       ...(headers as Record<string, string>),
     },
     ...rest,
