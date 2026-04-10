@@ -1,4 +1,7 @@
 import boto3
+import hmac
+import hashlib
+import base64
 from datetime import datetime, timezone
 from fastapi import APIRouter, HTTPException, Header, Query
 from fastapi.responses import RedirectResponse
@@ -8,24 +11,6 @@ from src.config import settings
 router = APIRouter()
 
 
-class LoginRequest(BaseModel):
-    email: str
-    password: str
-
-
-class RegisterRequest(BaseModel):
-    email: str
-    password: str
-    name: str
-    cpf: str
-
-
-class TokenResponse(BaseModel):
-    access_token: str
-    refresh_token: str
-    token_type: str = "bearer"
-
-
 def get_cognito_client():
     return boto3.client(
         "cognito-idp",
@@ -33,6 +18,20 @@ def get_cognito_client():
         aws_access_key_id=settings.aws_access_key_id,
         aws_secret_access_key=settings.aws_secret_access_key,
     )
+
+
+def calculate_secret_hash(username: str) -> str:
+    """Calculate Cognito Secret Hash"""
+    if not settings.cognito_client_secret:
+        return ""
+
+    message = username + settings.cognito_client_id
+    signature = hmac.new(
+        settings.cognito_client_secret.encode("utf-8"),
+        message.encode("utf-8"),
+        hashlib.sha256,
+    ).digest()
+    return base64.b64encode(signature).decode("utf-8")
 
 
 def create_jwt_token(user_sub: str, email: str) -> tuple[str, str]:
@@ -67,7 +66,7 @@ def create_jwt_token(user_sub: str, email: str) -> tuple[str, str]:
 @router.get("/callback")
 async def auth_callback(
     code: str = Query(...),
-    state: str = Query("web")  # Pode ser 'web' ou 'mobile'
+    state: str = Query("web"),  # Pode ser 'web' ou 'mobile'
 ):
     """
     URL fixa para processar o token do Cognito.
@@ -78,12 +77,12 @@ async def auth_callback(
         # Nota: Para trocar o código, o Cognito exige uma chamada POST para o endpoint /oauth2/token
         # Aqui, como o front já costuma ter os tokens via SDK, esta rota serve para orquestrar
         # Se o fluxo for Authorization Code no backend, implementaríamos a troca aqui.
-        
+
         # 2. Lógica de Redirecionamento Baseada no 'state' ou parâmetros de busca
         if state == "mobile":
             # Redireciona para o deep-link do app mobile
             return RedirectResponse(url=f"sauvia://callback?code={code}")
-        
+
         # Redireciona para o dashboard web por padrão
         # Buscamos a primeira URL do CORS como base
         base_web_url = settings.cors_origins.split(",")[0]
@@ -97,16 +96,23 @@ async def auth_callback(
 async def register(request: RegisterRequest):
     try:
         cognito = get_cognito_client()
-        cognito.sign_up(
-            ClientId=settings.cognito_client_id,
-            Username=request.email,
-            Password=request.password,
-            UserAttributes=[
+
+        sign_up_params = {
+            "ClientId": settings.cognito_client_id,
+            "Username": request.email,
+            "Password": request.password,
+            "UserAttributes": [
                 {"Name": "name", "Value": request.name},
                 {"Name": "email", "Value": request.email},
-                {"Name": "custom:cpf", "Value": request.cpf},
             ],
-        )
+        }
+
+        # Add SecretHash if client has secret
+        if settings.cognito_client_secret:
+            sign_up_params["ClientSecretHash"] = calculate_secret_hash(request.email)
+
+        cognito.sign_up(**sign_up_params)
+
         return TokenResponse(
             access_token="pending_confirmation",
             refresh_token="pending_confirmation",
@@ -123,13 +129,20 @@ async def register(request: RegisterRequest):
 async def login(request: LoginRequest):
     try:
         cognito = get_cognito_client()
+
+        auth_params = {
+            "USERNAME": request.email,
+            "PASSWORD": request.password,
+        }
+
+        # Add SecretHash if client has secret
+        if settings.cognito_client_secret:
+            auth_params["SECRET_HASH"] = calculate_secret_hash(request.email)
+
         response = cognito.initiate_auth(
             ClientId=settings.cognito_client_id,
             AuthFlow="USER_PASSWORD_AUTH",
-            AuthParameters={
-                "USERNAME": request.email,
-                "PASSWORD": request.password,
-            },
+            AuthParameters=auth_params,
         )
         access_token = response["AuthenticationResult"]["AccessToken"]
         refresh_token = response["AuthenticationResult"]["RefreshToken"]
