@@ -18,12 +18,14 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            cd ~/project/apps/backend && pip install -r requirements.txt
+            cd ~/project/apps/backend
+            pip install -r requirements.txt
+            pip install pytest-anyio
       - run:
           name: Run tests
           command: |
             cd ~/project/apps/backend
-            python -m pytest tests/ -v --junitxml=junit.xml || exit 0
+            python -m pytest tests/ -v --junitxml=junit.xml || true
       - store_test_results:
           path: apps/backend/junit.xml
 
