@@ -22,7 +22,8 @@ jobs:
       - run:
           name: Run tests
           command: |
-            cd ~/project/apps/backend && python -m pytest tests/ -v --junitxml=junit.xml || true
+            cd ~/project/apps/backend
+            python -m pytest tests/ -v --junitxml=junit.xml || exit 0
       - store_test_results:
           path: apps/backend/junit.xml
 
