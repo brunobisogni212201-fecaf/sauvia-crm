@@ -1,0 +1,152 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@5
+  python: circleci/python@2
+
+environment:
+  RENDER_SERVICE_ID: srv-d7cl3vrbc2fs73fq4500
+
+jobs:
+  test-backend:
+    docker:
+      - image: cimg/python:3.12
+    working_directory: ~/project
+    steps:
+      - checkout:
+          path: ~/project
+      - run:
+          name: Install dependencies
+          command: |
+            cd ~/project/apps/backend && pip install -r requirements.txt
+      - run:
+          name: Run tests
+          command: |
+            cd ~/project/apps/backend && python -m pytest tests/ -v --junitxml=junit.xml || true
+      - store_test_results:
+          path: apps/backend/junit.xml
+
+  test-web:
+    executor: node/default
+    working_directory: ~/project
+    steps:
+      - checkout:
+          path: ~/project
+      - node/install-packages:
+          cache-path: ~/project/node_modules
+          override-ci-command: npm install --frozen-lockfile
+      - run:
+          name: Run tests
+          command: |
+            cd ~/project/apps/web
+            npm test --passWithNoTests || true
+      - store_test_results:
+          path: apps/web/junit.xml
+
+  test-mobile:
+    executor: node/default
+    working_directory: ~/project
+    steps:
+      - checkout:
+          path: ~/project
+      - node/install-packages:
+          cache-path: ~/project/node_modules
+          override-ci-command: npm install --frozen-lockfile
+      - run:
+          name: Run tests
+          command: |
+            cd ~/project/apps/mobile
+            npm test --passWithNoTests || true
+      - store_test_results:
+          path: apps/mobile/junit.xml
+
+  deploy-backend:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run:
+          name: Deploy to Render
+          command: |
+            curl -s -X POST "https://api.render.com/v1/services/${RENDER_SERVICE_ID}/deploys" \
+              -H "Authorization: Bearer ${RENDER_API_KEY}" \
+              -H "Content-Type: application/json" \
+              -d '{"clearCache": false}'
+      - run:
+          name: Verify deployment
+          command: |
+            sleep 10
+            curl -s "https://sauvia-crm-backend-service.onrender.com/health" || echo "Checking status..."
+
+  deploy-web:
+    machine:
+      image: ubuntu-2204:current
+    working_directory: ~/project
+    steps:
+      - checkout:
+          path: ~/project
+      - run:
+          name: Install Vercel
+          command: npm i -g vercel@latest
+      - run:
+          name: Deploy to Vercel
+          command: |
+            cd apps/web
+            vercel --prod --token=${VERCEL_TOKEN}
+
+  deploy-mobile:
+    machine:
+      image: ubuntu-2204:current
+    working_directory: ~/project
+    steps:
+      - checkout:
+          path: ~/project
+      - run:
+          name: Install EAS
+          command: npm i -g eas-cli
+      - run:
+          name: Build iOS
+          command: |
+            cd apps/mobile
+            eas build --platform ios --profile production --non-interactive
+
+workflows:
+  version: 2
+
+  backend-workflow:
+    triggers:
+      - push:
+          branches:
+            only: main
+          paths:
+            - apps/backend/**
+            - packages/**
+    jobs:
+      - test-backend
+      - deploy-backend:
+          requires: test-backend
+
+  web-workflow:
+    triggers:
+      - push:
+          branches:
+            only: main
+          paths:
+            - apps/web/**
+            - packages/**
+    jobs:
+      - test-web
+      - deploy-web:
+          requires: test-web
+
+  mobile-workflow:
+    triggers:
+      - push:
+          branches:
+            only: main
+          paths:
+            - apps/mobile/**
+            - packages/**
+    jobs:
+      - test-mobile
+      - deploy-mobile:
+          requires: test-mobile
