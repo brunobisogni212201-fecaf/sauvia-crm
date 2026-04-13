@@ -24,12 +24,16 @@ class Settings(BaseSettings):
     # Redis
     redis_url: str = "redis://localhost:6379/0"
 
-    # AWS Cognito
+    # AWS Cognito (Deprecated - migrating to Clerk)
     cognito_user_pool_id: str = "us-east-1_TAZzYtUAo"
     cognito_region: str = "us-east-1"
     cognito_client_id: str = "2rk8s9rt2ve4kdui05gcuic3bi"
     cognito_client_secret: str = ""
     cognito_domain: str = "https://sauvia-app.auth.us-east-1.amazoncognito.com"
+
+    # Clerk
+    clerk_secret_key: str = ""
+    clerk_publishable_key: str = ""
 
     # AWS Credentials
     aws_access_key_id: str = ""

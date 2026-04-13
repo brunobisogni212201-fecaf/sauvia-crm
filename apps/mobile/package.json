@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@sauvia/ui-icons": "workspace:*",
-    "amazon-cognito-identity-js": "^6.3.16",
+    "@clerk/clerk-expo": "^0.23.0",
     "expo": "~55.0.12",
     "expo-auth-session": "~55.0.5",
     "expo-constants": "~55.0.5",

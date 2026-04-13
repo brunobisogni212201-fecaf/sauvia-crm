@@ -50,20 +50,20 @@
 **ID Pencil:** `ADwPV` | **Dimensão:** 390×844 | **Status:** 🟡 Em Design
 
 **Descrição:**
-Tela de carregamento inicial do app. Exibe a logo Sauvia com animação de entrada. Fundo em verde primário (`#006b2c`) ou mint (`#e4fff9`). Aparece por 2-3 segundos enquanto o app inicializa e verifica o estado de autenticação.
+Tela de carregamento inicial do app. Exibe a logo Sauvia com animação de entrada. Fundo em roxo primário (`#7C3AED`) ou mint (`hsl(40, 20%, 98%)`). Aparece por 2-3 segundos enquanto o app inicializa e verifica o estado de autenticação.
 
 **Prompt de Desenvolvimento:**
 ```
 Crie um componente React Native (Expo) de Splash Screen para o app Sauvia CRM.
 
 Especificações:
-- Fundo: gradiente do #006b2c para #00a847 (verde, de cima para baixo)
+- Fundo: gradiente do #7C3AED para #8B5CF6 (roxo, de cima para baixo)
 - Centro: logo Sauvia (SVG ou imagem) com animação de fade-in + scale (0.8 → 1.0) usando Animated API
 - Abaixo da logo: tagline "Nutrição que transforma" em Plus Jakarta Sans, 16px, branco, opacity 0.8
 - Duração total: 2500ms, depois navega para /auth/login ou /dashboard conforme token existente
 - Verificar AsyncStorage para token válido durante a animação
 - Stack: React Native + Expo + React Navigation v6
-- Design tokens: primary=#006b2c, surface=#e4fff9, fontFamily=PlusJakartaSans
+- Design tokens: primary=#7C3AED, surface=hsl(40, 20%, 98%), fontFamily=PlusJakartaSans
 ```
 
 ---
@@ -79,16 +79,16 @@ Tela de autenticação para usuários existentes. Campos de e-mail e senha com b
 Crie a tela de Login para o app Sauvia CRM em React Native (Expo).
 
 Layout:
-- Fundo: #e4fff9 (mint)
-- Header: logo pequena + "Bem-vindo de volta" (Manrope Bold 24px, #00201d)
+- Fundo: hsl(40, 20%, 98%) (mint)
+- Header: logo pequena + "Bem-vindo de volta" (Manrope Bold 24px, hsl(210, 20%, 12%))
 - Card central com glassmorphism: background rgba(255,255,255,0.7) + blur(20px), border-radius 16px
 - Campo Email: TextInput com label flutuante, ícone de envelope (Lucide), border-radius 12px
 - Campo Senha: TextInput password com toggle visibilidade, ícone cadeado
-- Botão "Entrar": fundo #006b2c, texto branco, border-radius 999px (full), altura 52px
+- Botão "Entrar": fundo #7C3AED, texto branco, border-radius 999px (full), altura 52px
 - Link "Esqueci minha senha" abaixo do botão
 - Divisor "ou" com linhas laterais
 - Botão Google OAuth: borda #E5E7EB, ícone Google, texto #374151
-- Footer: "Não tem conta? Cadastre-se" com link em #006b2c
+- Footer: "Não tem conta? Cadastre-se" com link em #7C3AED
 
 Integração:
 - Conectar ao Clerk (useAuth, useSignIn)
@@ -111,14 +111,14 @@ Primeira tela do fluxo de cadastro. Usuário escolhe entre "Sou Paciente" ou "So
 Crie a tela de Escolha de Perfil do cadastro para o app Sauvia CRM em React Native (Expo).
 
 Layout:
-- Fundo: #e4fff9
-- Header: "Como você vai usar o Sauvia?" (Manrope Bold 22px, #00201d)
+- Fundo: hsl(40, 20%, 98%)
+- Header: "Como você vai usar o Sauvia?" (Manrope Bold 22px, hsl(210, 20%, 12%))
 - Subtítulo: "Escolha seu perfil para personalizar sua experiência"
 - Dois cards grandes (390-32px largura, ~200px altura cada):
   - Card PACIENTE: ícone User (Lucide verde), título "Sou Paciente", descrição "Acompanhe seu plano alimentar, consultas e saúde"
   - Card NUTRICIONISTA: ícone Stethoscope verde, título "Sou Nutricionista", descrição "Gerencie seus pacientes, agenda e planos alimentares"
-- Estado selecionado: borda 2px #006b2c, fundo rgba(0,107,44,0.06)
-- Botão "Continuar": desabilitado até seleção, fundo #006b2c quando ativo
+- Estado selecionado: borda 2px #7C3AED, fundo rgba(124, 58, 237, 0.06)
+- Botão "Continuar": desabilitado até seleção, fundo #7C3AED quando ativo
 - Link "Já tenho conta" no rodapé
 
 Lógica:
@@ -139,7 +139,7 @@ Segundo passo do cadastro. Coleta nome completo, data de nascimento, CPF e telef
 Crie a tela "Dados Pessoais" (passo 1/3 do onboarding) para o app Sauvia CRM em React Native (Expo).
 
 Layout:
-- Header com botão voltar (chevron-left) e progress bar (1/3 preenchida em #006b2c)
+- Header com botão voltar (chevron-left) e progress bar (1/3 preenchida em #7C3AED)
 - Título: "Seus dados pessoais" (Manrope Bold 22px)
 - Subtítulo: "Passo 1 de 3 — Dados básicos"
 - Campos do formulário (label flutuante animado):
@@ -147,7 +147,7 @@ Layout:
   - Data de nascimento (DatePicker nativo)
   - CPF (máscara 000.000.000-00)
   - Telefone/WhatsApp (máscara (00) 00000-0000)
-- Botão "Continuar" fixo no bottom (safe area), fundo #006b2c, full border-radius
+- Botão "Continuar" fixo no bottom (safe area), fundo #7C3AED, full border-radius
 - Validação em tempo real com indicador verde na borda do campo quando válido
 
 Stack: react-hook-form + zod + react-native-mask-input
@@ -178,7 +178,7 @@ Layout:
 
 Chips:
 - Padrão: border 1px #E5E7EB, border-radius 999px, fundo branco
-- Selecionado: fundo #006b2c, texto branco, sem border
+- Selecionado: fundo #7C3AED, texto branco, sem border
 - Padding: 8px 16px
 
 Botão "Continuar" → navega para G2 Foto e Conclusão
@@ -197,12 +197,12 @@ Botão "Continuar" → navega para G2 Foto e Conclusão
 Crie a tela "Foto e Conclusão" (passo 3/3) para o app Sauvia CRM em React Native (Expo).
 
 Layout:
-- Header com botão voltar e progress bar (3/3 completa em #006b2c)
+- Header com botão voltar e progress bar (3/3 completa em #7C3AED)
 - Título: "Quase lá!" | Subtítulo: "Passo 3 de 3"
 - Avatar circular grande (100px) centralizado:
-  - Placeholder: ícone User em fundo #c5fff5
+  - Placeholder: ícone User em fundo hsl(40, 15%, 94%)
   - Ao tocar: bottom sheet com "Tirar foto" e "Escolher da galeria"
-  - Ícone de câmera pequeno sobreposto no canto inferior direito em #006b2c
+  - Ícone de câmera pequeno sobreposto no canto inferior direito em #7C3AED
 - Card resumo dos dados inseridos (nome, CPF mascarado, objetivos)
 - Checkbox "Li e aceito os Termos de Uso e Política de Privacidade" (LGPD)
 - Botão "Criar minha conta" (desabilitado sem aceite dos termos)
@@ -234,21 +234,21 @@ Crie o Home Dashboard do paciente para o app Sauvia CRM em React Native (Expo).
 
 Layout (ScrollView vertical):
 - Header: "Olá, [Nome] 👋" (Manrope Bold 22px) + avatar do paciente (40px, topo direito)
-- Card "Próxima consulta" (glassmorphism, borda esquerda 4px #006b2c):
+- Card "Próxima consulta" (glassmorphism, borda esquerda 4px #7C3AED):
   - Data, hora e nome do nutricionista
-  - Botão "Ver detalhes" em texto #006b2c
+  - Botão "Ver detalhes" em texto #7C3AED
 - Card "Plano de hoje":
   - Progresso em kcal: barra horizontal verde (atual/meta)
   - 3 refeições do dia em chips: Café da manhã · Almoço · Jantar (check verde se concluído)
 - Grid 2x2 "Acesso rápido":
   - Plano Alimentar · Minhas Consultas · Vídeos · Métricas
-  - Cards com ícone Lucide + label, fundo branco, sombra rgba(0,55,50,0.06)
+  - Cards com ícone Lucide + label, fundo branco, sombra rgba(124, 58, 237, 0.06)
 - Seção "Vídeos recomendados" (horizontal ScrollView):
   - Cards de vídeo com thumbnail, título e duração
 
 Tab Bar (bottom):
 - Home · Plano · Consultas · Vídeos · Perfil
-- Ícone ativo em #006b2c, inativo em #9CA3AF
+- Ícone ativo em #7C3AED, inativo em #9CA3AF
 
 Stack: React Navigation (Tab + Stack), SWR para dados
 ```
@@ -274,7 +274,7 @@ Layout:
   - Avatar (50px), Nome, CRN, Especialidade principal
   - Rating (estrelas + número de avaliações)
   - Próximo horário disponível
-  - Botão "Agendar" em #006b2c (border-radius full, pequeno)
+  - Botão "Agendar" em #7C3AED (border-radius full, pequeno)
   - Toque no card → navega para Perfil do Profissional
 
 Estados:
@@ -298,7 +298,7 @@ Perfil do próprio paciente. Exibe foto, dados pessoais, métricas de saúde (IM
 Crie a tela de Perfil do Paciente para o app Sauvia CRM em React Native (Expo).
 
 Layout:
-- Header com fundo #006b2c (ou gradiente), avatar grande (90px) centralizado com botão editar
+- Header com fundo #7C3AED (ou gradiente), avatar grande (90px) centralizado com botão editar
 - Nome do paciente (Manrope Bold 20px, branco) + email (12px, rgba(255,255,255,0.8))
 - Cards de métricas em row (3 cards):
   - Peso atual (kg) · Altura (cm) · IMC
@@ -333,13 +333,13 @@ Crie a tela "Agendar Consulta" para o app Sauvia CRM em React Native (Expo).
 Layout:
 - Header: "Agendar Consulta" + nome do nutricionista selecionado
 - Mini calendário horizontal (semana atual visível, scroll para mais):
-  - Dia selecionado: círculo #006b2c com texto branco
-  - Dia atual: border #006b2c
+  - Dia selecionado: círculo #7C3AED com texto branco
+  - Dia atual: border #7C3AED
   - Dias sem disponibilidade: texto #9CA3AF
 - Título "Horários disponíveis" (após selecionar data)
 - Grid de chips de horário (2 colunas):
-  - Disponível: borda #006b2c, fundo branco
-  - Selecionado: fundo #006b2c, texto branco
+  - Disponível: borda #7C3AED, fundo branco
+  - Selecionado: fundo #7C3AED, texto branco
   - Indisponível: fundo #F3F4F6, texto #9CA3AF, strike-through
 - TextInput "Descreva o motivo da consulta" (opcional, 3 linhas)
 - Botão "Confirmar Agendamento" fixo no bottom
@@ -372,7 +372,7 @@ Layout:
   - Nome do nutricionista + avatar pequeno
   - Badge de status:
     - Agendada: fundo amarelo claro, texto #92400E
-    - Confirmada: fundo verde claro, texto #006b2c
+    - Confirmada: fundo neutro claro, texto #7C3AED
     - Concluída: fundo cinza, texto #6B7280
     - Cancelada: fundo vermelho claro, texto #991B1B
   - Ações na consulta "Próxima": Cancelar | Reagendar
@@ -405,8 +405,8 @@ Layout:
   - Pressão Arterial: "120/80 mmHg"
   - Última medição: data relativa
 - Gráfico de evolução de peso (últimos 30 dias):
-  - Linha suave em #006b2c
-  - Área preenchida com rgba(0,107,44,0.1)
+  - Linha suave em #7C3AED
+  - Área preenchida com rgba(124, 58, 237, 0.1)
   - Eixo X: datas; Eixo Y: peso
   - Usar react-native-chart-kit ou victory-native
 - Seção "Registros recentes":
@@ -469,7 +469,7 @@ Crie a tela "Plano Alimentar" para o app Sauvia CRM em React Native (Expo).
 Layout:
 - Header: "Meu Plano Alimentar" + nome do nutricionista + data de criação
 - Tabs de dias: Dom · Seg · Ter · Qua · Qui · Sex · Sáb (scroll horizontal)
-- Dia ativo com underline #006b2c
+- Dia ativo com underline #7C3AED
 - Para cada dia, lista de refeições (acordeão):
   - Ícone de refeição + Nome (Café da manhã etc) + kcal total
   - Expandido: lista de alimentos com quantidade e preparação
@@ -538,11 +538,11 @@ Layout:
   - Ao tocar: navega para Tela 3 Player
 - Título do vídeo (Manrope Bold 20px)
 - Row de metadados: duração · nível · grupo muscular
-- Badge "Prescrito pelo seu nutricionista" (se aplicável, fundo verde claro)
+- Badge "Prescrito pelo seu nutricionista" (se aplicável, fundo neutro claro)
 - Descrição completa do exercício (expandível "ver mais")
 - Seção "Como executar" (lista de passos numerados)
 - Seção "Músculos trabalhados" (chips)
-- Botão "Assistir agora" fixo no bottom (fundo #006b2c)
+- Botão "Assistir agora" fixo no bottom (fundo #7C3AED)
 - Botão "Marcar como concluído" (outline, após assistir)
 
 Dados: GET /api/v1/videos/{id}
@@ -568,7 +568,7 @@ Layout (fullscreen, landscape e portrait):
   - Centro: play/pause (ícone 60px)
   - Base: seek bar deslizável, tempo atual/total
   - Controles adicionais: volume, velocidade (0.5x/1x/1.5x/2x), fullscreen
-- Indicador de loading (spinner #006b2c) enquanto buffer carrega
+- Indicador de loading (spinner #7C3AED) enquanto buffer carrega
 
 Stack:
 - expo-av (Video component) ou react-native-video
@@ -628,7 +628,7 @@ Layout:
   - Free: grátis, limitado a 1 nutricionista, sem vídeos
   - Pro: R$29,90/mês, nutricionistas ilimitados, biblioteca completa
   - Premium: R$49,90/mês, tudo do Pro + acompanhamento exclusivo
-- Card recomendado: borda 2px #006b2c, badge "Mais popular" em laranja #F97316
+- Card recomendado: borda 2px #7C3AED, badge "Mais popular" em lavanda #A78BFA
 - Cada card: lista de benefícios com ícone check verde
 - Botão "Assinar [Plano]" → vai para Tela 13.2 Método de Pagamento
 - Link "Termos de uso e política de cobrança" no rodapé
@@ -655,7 +655,7 @@ Layout:
 - Dois cards de método:
   - Cartão de Crédito/Débito: ícones Visa/Master/Amex, "Aprovação imediata"
   - PIX: logo do PIX, "Aprovação em até 30 minutos", "5% de desconto"
-- Estado selecionado: borda #006b2c
+- Estado selecionado: borda #7C3AED
 - Botão "Continuar" → navega para tela correspondente (13.3 Cartão ou 13.4 PIX)
 
 Segurança: badge "Pagamento seguro — SSL" no rodapé
@@ -676,7 +676,7 @@ Crie a tela "Dados do Cartão" para o app Sauvia CRM em React Native (Expo).
 Layout:
 - Header: botão voltar + "Cartão de Crédito" + etapa (3/3)
 - Visualização do cartão (flip animado quando alterna frente/verso):
-  - Fundo gradiente verde #006b2c → #00a847
+  - Fundo gradiente roxo #7C3AED → #8B5CF6
   - Número mascarado: 0000 0000 0000 1234
   - Nome do titular, validade
 - Campos abaixo do cartão:
@@ -734,12 +734,12 @@ Confirmação de pagamento realizado com sucesso. Animação celebratória, resu
 Crie a tela "Pagamento Confirmado" para o app Sauvia CRM em React Native (Expo).
 
 Layout:
-- Fundo verde claro #e4fff9
+- Fundo verde claro hsl(40, 20%, 98%)
 - Animação Lottie de sucesso (check animado verde)
-- Título: "Pagamento confirmado! 🎉" (Manrope Bold 24px, #006b2c)
+- Título: "Pagamento confirmado! 🎉" (Manrope Bold 24px, #7C3AED)
 - Subtítulo: "Bem-vindo ao Sauvia [Nome do Plano]"
 - Card de resumo: plano, valor, próxima cobrança, método
-- Botão "Começar a usar o Sauvia" (fundo #006b2c, full border-radius)
+- Botão "Começar a usar o Sauvia" (fundo #7C3AED, full border-radius)
 - Enviar e-mail de confirmação automaticamente (backend)
 
 Navegar para: Home Dashboard
@@ -820,8 +820,8 @@ Crie a tela de Chat para o app Sauvia CRM em React Native (Expo).
 Layout:
 - Header: avatar do nutricionista + nome + status online (bolinha verde)
 - FlatList de mensagens (invertida, mais recentes na base):
-  - Mensagem do paciente: balão direita, fundo #006b2c, texto branco
-  - Mensagem do nutri: balão esquerda, fundo branco, texto #00201d
+  - Mensagem do paciente: balão direita, fundo #7C3AED, texto branco
+  - Mensagem do nutri: balão esquerda, fundo branco, texto hsl(210, 20%, 12%)
   - Timestamp pequeno em cada mensagem
   - Indicador de leitura (✓✓ azul ou ✓ cinza)
 - Mensagens especiais:
@@ -830,7 +830,7 @@ Layout:
 - Input bar na base (safe area):
   - TextInput "Escreva uma mensagem..."
   - Ícone de anexo (+ → câmera, galeria, arquivo)
-  - Botão enviar (ícone send, #006b2c)
+  - Botão enviar (ícone send, #7C3AED)
 
 Stack: React Native FlatList com keyboardAvoidingView
 WebSocket ou polling para mensagens em tempo real
@@ -924,7 +924,7 @@ Layout:
   Nutrição Clínica · Esportiva · Emagrecimento · Pediatria · Oncológica
   Gestacional · Vegetariana/Vegana · Comportamental · Funcional
   Renal · Cardíaca · Diabetes · Fitoterapia · Estética
-- Chip selecionado: fundo #006b2c, texto branco
+- Chip selecionado: fundo #7C3AED, texto branco
 - Chip padrão: border #E5E7EB, fundo branco
 - "Adicionar especialidade personalizada" (input livre)
 - Contador: "X especialidades selecionadas"
@@ -1086,7 +1086,7 @@ Layout (1440px):
 - Sidebar esquerda fixa (240px):
   - Logo Sauvia + avatar do nutri
   - Navegação: Dashboard · Clientes · Agenda · Planos · Vídeos · Relatórios · Configurações
-  - Item ativo: fundo rgba(0,107,44,0.1) + borda esquerda 3px #006b2c
+  - Item ativo: fundo rgba(124, 58, 237, 0.1) + borda esquerda 3px #7C3AED
 - Área principal (1200px):
   - Top bar: título da página + busca global + notificações (sino) + avatar dropdown
   - Grid de KPIs (4 cards em row):
@@ -1097,7 +1097,7 @@ Layout (1440px):
     - Agenda da semana (calendário mini)
     - Atividades recentes (feed de eventos)
 
-Design: Tailwind CSS 4, glassmorphism em cards, sombra rgba(0,55,50,0.06)
+Design: Tailwind CSS 4, glassmorphism em cards, sombra rgba(124, 58, 237, 0.06)
 Dados: GET /api/v1/nutritionists/{id}/dashboard
 Server Component com fetch (ISR 60s)
 ```
@@ -1116,7 +1116,7 @@ Crie a página "Clientes" do CRM web Sauvia em Next.js 16.
 
 Layout:
 - Sidebar (mesmo do Dashboard) + área principal
-- Top da página: título "Pacientes" + botão "Adicionar Paciente" (fundo #006b2c)
+- Top da página: título "Pacientes" + botão "Adicionar Paciente" (fundo #7C3AED)
 - Barra de filtros:
   - SearchInput (busca por nome, email, CPF)
   - Select: Status (Todos/Ativo/Inativo)
@@ -1128,7 +1128,7 @@ Layout:
   - Status: badge colorido
   - Ações: olho (ver) · lápis (editar) · calendário (agendar) · três pontos (mais)
 - Paginação (10/25/50 por página + nav de páginas)
-- Linha hover: fundo rgba(0,107,44,0.04)
+- Linha hover: fundo rgba(124, 58, 237, 0.04)
 
 Modal "Adicionar Paciente":
 - Formulário: nome, email, telefone, CPF, data nascimento, observações
@@ -1185,7 +1185,7 @@ Layout:
 - Controles de calendário:
   - Botões: Hoje · ← → (semana/mês)
   - Toggle de view: Semana | Mês
-  - Botão "Nova Consulta" (fundo #006b2c)
+  - Botão "Nova Consulta" (fundo #7C3AED)
 - Calendário (usar react-big-calendar ou FullCalendar):
   - View semana: colunas por dia, horários 07h-21h
   - Evento de consulta: bloco colorido com nome do paciente
@@ -1262,7 +1262,7 @@ Dashboard administrativo para gestão da plataforma SaaS. Métricas de negócio:
 Crie o Dashboard Admin para o Sauvia em Next.js 16. Acesso restrito a role=admin.
 
 Layout:
-- Sidebar diferente (cor escura #00201d) + logo admin
+- Sidebar diferente (cor escura hsl(210, 20%, 12%)) + logo admin
 - KPIs em cards (row de 5):
   - MRR (R$) · Usuários totais · Nutricionistas · Churn rate · NPS
 - Gráfico de linha dupla: Receita vs. Novos usuários (últimos 12 meses)
@@ -1426,11 +1426,11 @@ Tela web de seleção de tipo de usuário no início do cadastro. Layout dividid
 Crie a página de Escolha de Perfil do auth web para o Sauvia em Next.js 16.
 
 Layout (1440px, split screen):
-- Lado esquerdo (50%): fundo gradiente mint #e4fff9 → branco
+- Lado esquerdo (50%): fundo gradiente mint hsl(40, 20%, 98%) → branco
   - Card grande centralizado com ícone User, título "Sou Paciente"
   - Descrição e benefícios listados
   - Botão "Começar como Paciente"
-- Lado direito (50%): fundo gradiente verde suave
+- Lado direito (50%): fundo gradiente roxo suave
   - Card com ícone Stethoscope, "Sou Nutricionista"
   - Benefícios profissionais
   - Botão "Começar como Nutricionista"
@@ -1461,7 +1461,7 @@ Layout (1440px, 2 colunas):
   - Etapa 3: foto, termos e confirmação
   - Botões Anterior/Próximo + submit
 - Coluna direita (40%): panel de benefícios
-  - Fundo gradiente verde
+  - Fundo gradiente roxo
   - Título: "Transforme sua prática"
   - 5 benefícios com ícone check
   - Depoimento de nutricionista real (foto, nome, CRN)
@@ -1491,7 +1491,7 @@ Layout (1440px):
     - Objetivos de saúde (chips)
     - Restrições alimentares (chips)
     - Checkbox LGPD
-  - Botão "Criar minha conta" (fundo #006b2c)
+  - Botão "Criar minha conta" (fundo #7C3AED)
   - "Já tenho conta? Entrar"
 - Coluna direita (45%): visual motivacional
   - Imagem ou ilustração de pessoa saudável
@@ -1551,7 +1551,7 @@ Layout (1440px, split):
   - Campo: E-mail
   - Campo: Senha + toggle visibilidade
   - Checkbox "Lembrar de mim"
-  - Botão "Entrar" (fundo #006b2c, full-width, 52px)
+  - Botão "Entrar" (fundo #7C3AED, full-width, 52px)
   - Divider "ou"
   - Botão Google OAuth (outline)
   - Links: "Esqueci minha senha" | "Criar conta"

@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
 import { Instrument_Serif, Plus_Jakarta_Sans } from "next/font/google";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignUpButton,
+  Show,
+  UserButton,
+} from "@clerk/nextjs";
 import "./globals.css";
 
 const instrumentSerif = Instrument_Serif({
@@ -25,10 +32,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR">
-      <body className={`${instrumentSerif.variable} ${plusJakarta.variable} antialiased`}>
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="pt-BR">
+        <body
+          className={`${instrumentSerif.variable} ${plusJakarta.variable} antialiased`}
+        >
+          <header className="flex justify-end gap-4 p-4">
+            <Show when="signed-out">
+              <SignInButton />
+              <SignUpButton />
+            </Show>
+            <Show when="signed-in">
+              <UserButton />
+            </Show>
+          </header>
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

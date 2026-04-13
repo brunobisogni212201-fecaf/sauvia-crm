@@ -1,9 +1,10 @@
-import { getCurrentSession } from "./cognito";
+import { auth } from "@clerk/nextjs/server";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000/api/v1";
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000/api/v1";
 
 interface RequestOptions extends RequestInit {
-  /** Pass a token manually — if omitted, the Cognito session token is used. */
+  /** Pass a token manually — if omitted, the Clerk session token is used. */
   token?: string;
   /** Set to true to skip auto-injecting the JWT. */
   skipAuth?: boolean;
@@ -15,11 +16,11 @@ async function request<T>(
 ): Promise<T> {
   const { token, skipAuth, headers, ...rest } = options;
 
-  // Auto-inject JWT from Cognito session when no explicit token is provided
+  // Auto-inject JWT from Clerk session when no explicit token is provided
   let bearerToken = token;
   if (!bearerToken && !skipAuth) {
-    const session = await getCurrentSession();
-    bearerToken = session?.accessToken;
+    const { getToken } = await auth();
+    bearerToken = (await getToken()) ?? undefined;
   }
 
   const res = await fetch(`${API_URL}${endpoint}`, {

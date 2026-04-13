@@ -2,7 +2,9 @@ import { useCallback, useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
+import { ClerkProvider } from "@clerk/clerk-expo";
 import AnimatedSplashScreen from "../components/AnimatedSplashScreen";
+import { isClerkConfigured, getClerkPublishableKey } from "../lib/clerk";
 
 // Keep the native splash visible while we load resources
 SplashScreen.preventAutoHideAsync();
@@ -11,16 +13,13 @@ export default function RootLayout() {
   const [isAppReady, setIsAppReady] = useState(false);
   const [isSplashDone, setIsSplashDone] = useState(false);
 
+  const publishableKey = getClerkPublishableKey();
+
   useEffect(() => {
     async function prepare() {
       try {
-        // Load fonts, check auth, prefetch data, etc.
-        // Example:
-        // await Font.loadAsync({
-        //   "InstrumentSerif-Regular": require("../assets/fonts/InstrumentSerif-Regular.ttf"),
-        //   "PlusJakartaSans-Medium": require("../assets/fonts/PlusJakartaSans-Medium.ttf"),
-        // });
-        // await checkAuthToken();
+        // Initialize Clerk if configured
+        await isClerkConfigured();
       } catch (e) {
         console.warn("Error loading app resources:", e);
       } finally {
@@ -38,19 +37,21 @@ export default function RootLayout() {
   }, []);
 
   return (
-    <View style={styles.root}>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="(auth)" />
-        <Stack.Screen name="(tabs)" />
-      </Stack>
+    <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
+      <View style={styles.root}>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="(auth)" />
+          <Stack.Screen name="(tabs)" />
+        </Stack>
 
-      {!isSplashDone && (
-        <AnimatedSplashScreen
-          isAppReady={isAppReady}
-          onAnimationComplete={onSplashComplete}
-        />
-      )}
-    </View>
+        {!isSplashDone && (
+          <AnimatedSplashScreen
+            isAppReady={isAppReady}
+            onAnimationComplete={onSplashComplete}
+          />
+        )}
+      </View>
+    </ClerkProvider>
   );
 }
 
@@ -59,3 +60,31 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+// Token cache for Clerk
+const tokenCache = {
+  getToken: async (key: string) => {
+    try {
+      const item = await import("expo-secure-store").then((SecureStore) =>
+        SecureStore.getItemAsync(key),
+      );
+      return item ?? null;
+    } catch {
+      return null;
+    }
+  },
+  saveToken: async (key: string, value: string) => {
+    try {
+      await import("expo-secure-store").then((SecureStore) =>
+        SecureStore.setItemAsync(key, value),
+      );
+    } catch {}
+  },
+  clearToken: async (key: string) => {
+    try {
+      await import("expo-secure-store").then((SecureStore) =>
+        SecureStore.deleteItemAsync(key),
+      );
+    } catch {}
+  },
+};
