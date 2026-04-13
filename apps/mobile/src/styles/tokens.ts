@@ -3,28 +3,28 @@
 // Use these tokens to ensure consistency across the application
 
 export const colors = {
-  // Primary (Green)
-  primary: '#006b2c',
-  primaryLight: '#00a847',
-  primaryDark: '#004d1f',
+  // Primary (Purple)
+  primary: '#7C3AED',
+  primaryLight: '#8B5CF6',
+  primaryDark: '#5B21B6',
   
-  // Secondary (Orange)
-  secondary: '#F97316',
-  secondaryLight: '#fb923c',
+  // Secondary (Lavender)
+  secondary: '#A78BFA',
+  secondaryLight: '#C4B5FD',
   
-  // Surface (Teal/Mint)
-  surface: '#e4fff9',
-  surfaceContainer: '#c5fff5',
-  surfaceContainerHigh: '#a8f5e5',
+  // Surface (Warm neutral)
+  surface: 'hsl(40, 20%, 98%)',
+  surfaceContainer: 'hsl(40, 15%, 94%)',
+  surfaceContainerHigh: 'hsl(40, 10%, 90%)',
   
   // Text
-  onSurface: '#00201d',
-  onSurfaceVariant: '#3f6b62',
+  onSurface: 'hsl(210, 20%, 12%)',
+  onSurfaceVariant: 'hsl(210, 10%, 40%)',
   
   // Semantic
   error: '#ba1a1a',
-  success: '#006b2c',
-  warning: '#F97316',
+  success: '#16a34a',
+  warning: '#f59e0b',
   
   // Common
   white: '#ffffff',
@@ -68,21 +68,21 @@ export const spacing = {
 
 export const shadows = {
   sm: {
-    shadowColor: '#003732',
+    shadowColor: '#7C3AED',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.06,
     shadowRadius: 3,
     elevation: 1,
   },
   md: {
-    shadowColor: '#003732',
+    shadowColor: '#7C3AED',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.08,
     shadowRadius: 12,
     elevation: 4,
   },
   lg: {
-    shadowColor: '#003732',
+    shadowColor: '#7C3AED',
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.12,
     shadowRadius: 24,

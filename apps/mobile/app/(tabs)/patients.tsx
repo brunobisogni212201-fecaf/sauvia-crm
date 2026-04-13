@@ -27,17 +27,17 @@ export default function PatientsScreen() {
       {/* Search Bar */}
       <View style={styles.searchContainer}>
         <View style={styles.searchInputContainer}>
-          <Search color="#3f6b62" size={20} />
+          <Search color="hsl(210, 10%, 40%)" size={20} />
           <TextInput
             style={styles.searchInput}
             placeholder="Buscar pacientes..."
-            placeholderTextColor="#3f6b62"
+            placeholderTextColor="hsl(210, 10%, 40%)"
             value={search}
             onChangeText={setSearch}
           />
         </View>
         <TouchableOpacity style={styles.filterButton}>
-          <Filter color="#006b2c" size={20} />
+          <Filter color="#7C3AED" size={20} />
         </TouchableOpacity>
       </View>
 
@@ -72,7 +72,7 @@ export default function PatientsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#e4fff9",
+    backgroundColor: "hsl(40, 20%, 98%)",
   },
   header: {
     padding: 24,
@@ -81,11 +81,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: "bold",
-    color: "#00201d",
+    color: "hsl(210, 20%, 12%)",
   },
   subtitle: {
     fontSize: 14,
-    color: "#3f6b62",
+    color: "hsl(210, 10%, 40%)",
     marginTop: 4,
   },
   searchContainer: {
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 16,
     paddingHorizontal: 16,
-    shadowColor: '#003732',
+    shadowColor: '#7C3AED',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.08,
     shadowRadius: 12,
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     marginLeft: 12,
     fontSize: 16,
-    color: '#00201d',
+    color: 'hsl(210, 20%, 12%)',
   },
   filterButton: {
     width: 48,
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: '#003732',
+    shadowColor: '#7C3AED',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.08,
     shadowRadius: 12,
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 12,
     marginBottom: 12,
-    shadowColor: '#003732',
+    shadowColor: '#7C3AED',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.08,
     shadowRadius: 12,
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: '#006b2c',
+    backgroundColor: '#7C3AED',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -163,11 +163,11 @@ const styles = StyleSheet.create({
   patientName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#00201d',
+    color: 'hsl(210, 20%, 12%)',
   },
   patientEmail: {
     fontSize: 12,
-    color: '#3f6b62',
+    color: 'hsl(210, 10%, 40%)',
     marginTop: 2,
   },
   statusBadge: {
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   statusActive: {
-    backgroundColor: '#a8f5e5',
+    backgroundColor: 'hsl(40, 10%, 90%)',
   },
   statusInactive: {
     backgroundColor: '#e5e7eb',
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
   statusText: {
     fontSize: 12,
     fontWeight: '600',
-    color: '#00201d',
+    color: 'hsl(210, 20%, 12%)',
   },
   fab: {
     position: 'absolute',
@@ -193,10 +193,10 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: '#006b2c',
+    backgroundColor: '#7C3AED',
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: '#003732',
+    shadowColor: '#7C3AED',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
     shadowRadius: 12,

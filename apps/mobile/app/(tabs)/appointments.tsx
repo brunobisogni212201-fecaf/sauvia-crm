@@ -95,7 +95,7 @@ export default function AppointmentsScreen() {
 
             <View style={styles.appointmentDetails}>
               <View style={styles.appointmentDetail}>
-                <Clock color="#3f6b62" size={16} />
+                <Clock color="hsl(210, 10%, 40%)" size={16} />
                 <Text style={styles.appointmentDetailText}>
                   {apt.time} ({apt.duration})
                 </Text>
@@ -103,12 +103,12 @@ export default function AppointmentsScreen() {
               <View style={styles.appointmentDetail}>
                 {apt.mode === 'online' ? (
                   <>
-                    <Video color="#3f6b62" size={16} />
+                    <Video color="hsl(210, 10%, 40%)" size={16} />
                     <Text style={styles.appointmentDetailText}>Online</Text>
                   </>
                 ) : (
                   <>
-                    <MapPin color="#3f6b62" size={16} />
+                    <MapPin color="hsl(210, 10%, 40%)" size={16} />
                     <Text style={styles.appointmentDetailText}>Presencial</Text>
                   </>
                 )}
@@ -135,7 +135,7 @@ export default function AppointmentsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#e4fff9",
+    backgroundColor: "hsl(40, 20%, 98%)",
   },
   header: {
     padding: 24,
@@ -144,11 +144,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: "bold",
-    color: "#00201d",
+    color: "hsl(210, 20%, 12%)",
   },
   subtitle: {
     fontSize: 14,
-    color: "#3f6b62",
+    color: "hsl(210, 10%, 40%)",
     marginTop: 4,
   },
   calendarStrip: {
@@ -164,11 +164,11 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   calendarDayActive: {
-    backgroundColor: '#006b2c',
+    backgroundColor: '#7C3AED',
   },
   calendarDayText: {
     fontSize: 12,
-    color: '#3f6b62',
+    color: 'hsl(210, 10%, 40%)',
     fontWeight: '600',
   },
   calendarDayTextActive: {
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
   },
   calendarDateText: {
     fontSize: 16,
-    color: '#00201d',
+    color: 'hsl(210, 20%, 12%)',
     marginTop: 4,
   },
   calendarDateTextActive: {
@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#00201d',
+    color: 'hsl(210, 20%, 12%)',
     marginBottom: 16,
   },
   appointmentCard: {
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 16,
     marginBottom: 12,
-    shadowColor: '#003732',
+    shadowColor: '#7C3AED',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.08,
     shadowRadius: 12,
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: '#006b2c',
+    backgroundColor: '#7C3AED',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -227,11 +227,11 @@ const styles = StyleSheet.create({
   appointmentName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#00201d',
+    color: 'hsl(210, 20%, 12%)',
   },
   appointmentType: {
     fontSize: 12,
-    color: '#3f6b62',
+    color: 'hsl(210, 10%, 40%)',
     marginTop: 2,
   },
   statusBadge: {
@@ -255,7 +255,7 @@ const styles = StyleSheet.create({
   },
   appointmentDetailText: {
     fontSize: 14,
-    color: '#3f6b62',
+    color: 'hsl(210, 10%, 40%)',
   },
   appointmentActions: {
     flexDirection: 'row',
@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
   },
   primaryButton: {
     flex: 1,
-    backgroundColor: '#006b2c',
+    backgroundColor: '#7C3AED',
     borderRadius: 12,
     paddingVertical: 12,
     alignItems: 'center',
@@ -275,15 +275,15 @@ const styles = StyleSheet.create({
   },
   secondaryButton: {
     flex: 1,
-    backgroundColor: '#e4fff9',
+    backgroundColor: 'hsl(40, 20%, 98%)',
     borderRadius: 12,
     paddingVertical: 12,
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#006b2c',
+    borderColor: '#7C3AED',
   },
   secondaryButtonText: {
-    color: '#006b2c',
+    color: '#7C3AED',
     fontSize: 14,
     fontWeight: '600',
   },

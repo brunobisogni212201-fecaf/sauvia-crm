@@ -53,7 +53,7 @@ export function Input({
         value={value}
         onChangeText={onChangeText}
         placeholder={placeholder}
-        placeholderTextColor="#3f6b6250"
+        placeholderTextColor="hsla(210, 10%, 40%, 0.31)"
         keyboardType={keyboardType}
         secureTextEntry={secureTextEntry}
         multiline={multiline}
@@ -79,16 +79,16 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     fontWeight: "500",
-    color: "#00201d",
+    color: "hsl(210, 20%, 12%)",
     marginBottom: 6,
   },
   input: {
-    backgroundColor: "#e4fff9",
+    backgroundColor: "hsl(40, 20%, 98%)",
     borderRadius: 12,
     paddingHorizontal: 16,
     paddingVertical: 12,
     fontSize: 16,
-    color: "#00201d",
+    color: "hsl(210, 20%, 12%)",
     borderWidth: 2,
     borderColor: "transparent",
   },
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   },
   helper: {
     fontSize: 12,
-    color: "#3f6b62",
+    color: "hsl(210, 10%, 40%)",
     marginTop: 4,
   },
 });

@@ -54,7 +54,7 @@ export default function ProfileScreen() {
               onPress={item.onPress}
             >
               <View style={styles.menuItemLeft}>
-                <Icon color="#00201d" size={20} />
+                <Icon color="hsl(210, 20%, 12%)" size={20} />
                 <Text style={styles.menuItemLabel}>{item.label}</Text>
               </View>
               <Text style={styles.menuItemChevron}>›</Text>
@@ -81,7 +81,7 @@ export default function ProfileScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#e4fff9",
+    backgroundColor: "hsl(40, 20%, 98%)",
   },
   header: {
     padding: 24,
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: "bold",
-    color: "#00201d",
+    color: "hsl(210, 20%, 12%)",
   },
   profileCard: {
     alignItems: 'center',
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginHorizontal: 16,
     borderRadius: 16,
-    shadowColor: '#003732',
+    shadowColor: '#7C3AED',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.08,
     shadowRadius: 12,
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: '#006b2c',
+    backgroundColor: '#7C3AED',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 16,
@@ -121,16 +121,16 @@ const styles = StyleSheet.create({
   profileName: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#00201d',
+    color: 'hsl(210, 20%, 12%)',
   },
   profileEmail: {
     fontSize: 14,
-    color: '#3f6b62',
+    color: 'hsl(210, 10%, 40%)',
     marginTop: 4,
   },
   profileRole: {
     fontSize: 12,
-    color: '#3f6b62',
+    color: 'hsl(210, 10%, 40%)',
     marginTop: 2,
   },
   profileStats: {
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
     borderRadius: 16,
     padding: 16,
-    shadowColor: '#003732',
+    shadowColor: '#7C3AED',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.08,
     shadowRadius: 12,
@@ -153,23 +153,23 @@ const styles = StyleSheet.create({
   statValue: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#006b2c',
+    color: '#7C3AED',
   },
   statLabel: {
     fontSize: 12,
-    color: '#3f6b62',
+    color: 'hsl(210, 10%, 40%)',
     marginTop: 4,
   },
   statDivider: {
     width: 1,
-    backgroundColor: '#e4fff9',
+    backgroundColor: 'hsl(40, 20%, 98%)',
   },
   menuSection: {
     backgroundColor: '#fff',
     marginHorizontal: 16,
     marginTop: 24,
     borderRadius: 16,
-    shadowColor: '#003732',
+    shadowColor: '#7C3AED',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.08,
     shadowRadius: 12,
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#e4fff9',
+    borderBottomColor: 'hsl(40, 20%, 98%)',
   },
   menuItemLeft: {
     flexDirection: 'row',
@@ -191,11 +191,11 @@ const styles = StyleSheet.create({
   },
   menuItemLabel: {
     fontSize: 16,
-    color: '#00201d',
+    color: 'hsl(210, 20%, 12%)',
   },
   menuItemChevron: {
     fontSize: 24,
-    color: '#3f6b62',
+    color: 'hsl(210, 10%, 40%)',
   },
   logoutSection: {
     paddingHorizontal: 16,
@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 16,
     padding: 16,
-    shadowColor: '#003732',
+    shadowColor: '#7C3AED',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.08,
     shadowRadius: 12,
@@ -226,6 +226,6 @@ const styles = StyleSheet.create({
   },
   footerText: {
     fontSize: 12,
-    color: '#3f6b62',
+    color: 'hsl(210, 10%, 40%)',
   },
 });

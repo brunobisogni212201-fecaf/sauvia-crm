@@ -267,14 +267,14 @@ Mobile App
 <Button className="bg-primary text-white">Save</Button>
 
 // Mobile (StyleSheet)
-backgroundColor: '#006b2c'
+backgroundColor: '#7C3AED'
 ```
 
 ### Status Indicators
 ```tsx
 // Success/Active
-backgroundColor: '#a8f5e5' // surface-container-high
-text: '#00201d'
+backgroundColor: 'hsl(40, 10%, 90%)' // surface-container-high
+text: 'hsl(210, 20%, 12%)'
 
 // Warning/Pending
 backgroundColor: '#fef3c7'
@@ -293,5 +293,5 @@ text: '#991b1b'
 // Mobile (StyleSheet)
 backgroundColor: '#fff',
 borderRadius: 16,
-shadowColor: '#003732',
+shadowColor: '#7C3AED',
 ```

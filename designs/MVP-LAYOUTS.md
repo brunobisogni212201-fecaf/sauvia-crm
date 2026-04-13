@@ -10,9 +10,9 @@ This document describes the MVP layouts implemented for the Sauvia CRM platform.
 
 ### 1. Design System (`/designs/DESIGN-SYSTEM.md`)
 Complete design tokens and guidelines:
-- **Colors**: Green primary (#006b2c), Orange secondary (#F97316), Teal surfaces
+- **Colors**: Purple primary (#7C3AED), Lavender secondary (#A78BFA), warm neutral surfaces
 - **Typography**: Manrope (display), Plus Jakarta Sans (body)
-- **Shadows**: Green-tinted shadows (never pure black)
+- **Shadows**: Purple-tinted shadows (never pure black)
 - **Border Radius**: 1rem for cards, full for buttons
 - **Glassmorphism**: backdrop-blur 20px for overlays
 
@@ -167,7 +167,7 @@ import { Users } from "lucide-react-native";
 export default function MyScreen() {
   return (
     <View style={styles.container}>
-      <Users color="#006b2c" size={24} />
+      <Users color="#7C3AED" size={24} />
       <Text>Content</Text>
     </View>
   );
@@ -178,17 +178,17 @@ export default function MyScreen() {
 
 ### Colors
 ```css
---color-primary: #006b2c        /* Main green */
---color-primary-light: #00a847  /* Hover states */
---color-primary-dark: #004d1f   /* Active states */
---color-secondary: #F97316      /* Orange accent */
---color-surface: #e4fff9        /* Background */
---color-on-surface: #00201d     /* Primary text */
---color-on-surface-variant: #3f6b62  /* Secondary text */
+--color-primary: #7C3AED        /* Main purple */
+--color-primary-light: #8B5CF6  /* Hover states */
+--color-primary-dark: #5B21B6   /* Active states */
+--color-secondary: #A78BFA      /* Lavender accent */
+--color-surface: hsl(40, 20%, 98%)        /* Background */
+--color-on-surface: hsl(210, 20%, 12%)     /* Primary text */
+--color-on-surface-variant: hsl(210, 10%, 40%)  /* Secondary text */
 ```
 
 ### Shadows
-All shadows use green-tinted rgba(0, 55, 50, X):
+All shadows use purple-tinted rgba(124, 58, 237, X):
 - **sm**: 0 1px 3px - Subtle elevation
 - **md**: 0 4px 12px - Cards
 - **lg**: 0 8px 24px - Modals
@@ -204,7 +204,7 @@ All shadows use green-tinted rgba(0, 55, 50, X):
 ### Rules
 1. **NO 1px borders** - Use color changes for separation
 2. **Corner radius**: 1rem for cards, full for buttons
-3. **Shadows**: Always green-tinted, never pure black
+3. **Shadows**: Always purple-tinted, never pure black
 4. **Glassmorphism**: For overlays and navigation elements
 
 ## File Structure

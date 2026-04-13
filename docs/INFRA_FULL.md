@@ -103,7 +103,7 @@ User -> Vercel (Frontend) -> Render (Backend) -> Cognito
 
 - Bundle ID: `com.sauvia.app`
 - Scheme: `sauvia`
-- Splash: verde (#006b2c)
+- Splash: roxo (#7C3AED)
 
 ### Para build de produção:
 

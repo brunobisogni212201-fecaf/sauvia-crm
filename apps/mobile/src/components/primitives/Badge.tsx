@@ -16,9 +16,9 @@ const variantStyles: Record<
   BadgeVariant,
   { bg: string; text: string; dot: string }
 > = {
-  default: { bg: "#c5fff5", text: "#00201d", dot: "#3f6b62" },
+  default: { bg: "hsl(40, 15%, 94%)", text: "hsl(210, 20%, 12%)", dot: "hsl(210, 10%, 40%)" },
   success: { bg: "#dcfce7", text: "#166534", dot: "#22c55e" },
-  warning: { bg: "#ffedd5", text: "#9a3412", dot: "#f97316" },
+  warning: { bg: "#ffedd5", text: "#9a3412", dot: "#f59e0b" },
   error: { bg: "#fee2e2", text: "#991b1b", dot: "#ef4444" },
   info: { bg: "#dbeafe", text: "#1e40af", dot: "#3b82f6" },
 };

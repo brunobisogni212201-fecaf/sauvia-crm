@@ -65,20 +65,20 @@ ChartJS.register(
 
 function ColorPalette() {
   const colors = [
-    { name: "Primary", value: "#006b2c", class: "bg-primary" },
-    { name: "Primary Light", value: "#00a847", class: "bg-primary-light" },
-    { name: "Primary Dark", value: "#004d1f", class: "bg-primary-dark" },
-    { name: "Secondary", value: "#F97316", class: "bg-secondary" },
-    { name: "Surface", value: "#e4fff9", class: "bg-surface" },
+    { name: "Primary", value: "#7C3AED", class: "bg-primary" },
+    { name: "Primary Light", value: "#8B5CF6", class: "bg-primary-light" },
+    { name: "Primary Dark", value: "#5B21B6", class: "bg-primary-dark" },
+    { name: "Secondary", value: "#A78BFA", class: "bg-secondary" },
+    { name: "Surface", value: "hsl(40, 20%, 98%)", class: "bg-surface" },
     {
       name: "Surface Container",
-      value: "#c5fff5",
+      value: "hsl(40, 15%, 94%)",
       class: "bg-surface-container",
     },
-    { name: "On Surface", value: "#00201d", class: "bg-on-surface" },
+    { name: "On Surface", value: "hsl(210, 20%, 12%)", class: "bg-on-surface" },
     {
       name: "On Surface Variant",
-      value: "#3f6b62",
+      value: "hsl(210, 10%, 40%)",
       class: "bg-on-surface-variant",
     },
   ];
@@ -745,7 +745,7 @@ function ChartShowcase() {
       {
         label: "Pacientes",
         data: [12, 19, 15, 25, 22, 30],
-        backgroundColor: "#006b2c",
+        backgroundColor: "#7C3AED",
         borderRadius: 8,
       },
     ],
@@ -757,16 +757,16 @@ function ChartShowcase() {
       {
         label: "Consultas",
         data: [8, 12, 15, 11, 18, 22],
-        borderColor: "#006b2c",
-        backgroundColor: "rgba(0, 107, 44, 0.1)",
+        borderColor: "#7C3AED",
+        backgroundColor: "rgba(124, 58, 237, 0.1)",
         fill: true,
         tension: 0.4,
       },
       {
         label: "Retornos",
         data: [4, 6, 8, 5, 9, 12],
-        borderColor: "#F97316",
-        backgroundColor: "rgba(249, 115, 22, 0.1)",
+        borderColor: "#A78BFA",
+        backgroundColor: "rgba(167, 139, 250, 0.1)",
         fill: true,
         tension: 0.4,
       },
@@ -778,7 +778,7 @@ function ChartShowcase() {
     datasets: [
       {
         data: [65, 20, 15],
-        backgroundColor: ["#006b2c", "#F97316", "#00a847"],
+        backgroundColor: ["#7C3AED", "#A78BFA", "#8B5CF6"],
         borderWidth: 0,
       },
     ],
@@ -790,16 +790,16 @@ function ChartShowcase() {
       {
         label: "Paciente",
         data: [75, 85, 70, 60, 80, 90],
-        backgroundColor: "rgba(0, 107, 44, 0.2)",
-        borderColor: "#006b2c",
-        pointBackgroundColor: "#006b2c",
+        backgroundColor: "rgba(124, 58, 237, 0.2)",
+        borderColor: "#7C3AED",
+        pointBackgroundColor: "#7C3AED",
       },
       {
         label: "Meta",
         data: [80, 90, 75, 65, 85, 95],
-        backgroundColor: "rgba(249, 115, 22, 0.2)",
-        borderColor: "#F97316",
-        pointBackgroundColor: "#F97316",
+        backgroundColor: "rgba(167, 139, 250, 0.2)",
+        borderColor: "#A78BFA",
+        pointBackgroundColor: "#A78BFA",
       },
     ],
   };
@@ -1007,7 +1007,7 @@ function DashboardShowcase() {
       {
         label: "Consultas",
         data: [8, 12, 6, 15, 10, 4],
-        backgroundColor: "#006b2c",
+        backgroundColor: "#7C3AED",
         borderRadius: 8,
       },
     ],
@@ -1019,8 +1019,8 @@ function DashboardShowcase() {
       {
         label: "Pacientes Ativos",
         data: [45, 52, 48, 60, 58, 72],
-        borderColor: "#006b2c",
-        backgroundColor: "rgba(0, 107, 44, 0.1)",
+        borderColor: "#7C3AED",
+        backgroundColor: "rgba(124, 58, 237, 0.1)",
         fill: true,
         tension: 0.4,
       },
@@ -1032,7 +1032,7 @@ function DashboardShowcase() {
     datasets: [
       {
         data: [35, 45, 20],
-        backgroundColor: ["#006b2c", "#F97316", "#00a847"],
+        backgroundColor: ["#7C3AED", "#A78BFA", "#8B5CF6"],
         borderWidth: 0,
       },
     ],

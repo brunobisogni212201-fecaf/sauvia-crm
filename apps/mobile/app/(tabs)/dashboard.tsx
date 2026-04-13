@@ -29,7 +29,7 @@ export default function DashboardScreen() {
           return (
             <View key={index} style={styles.statCard}>
               <View style={styles.statIconContainer}>
-                <Icon color="#006b2c" size={24} />
+                <Icon color="#7C3AED" size={24} />
               </View>
               <Text style={styles.statValue}>{stat.value}</Text>
               <Text style={styles.statLabel}>{stat.label}</Text>
@@ -61,7 +61,7 @@ export default function DashboardScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#e4fff9",
+    backgroundColor: "hsl(40, 20%, 98%)",
   },
   header: {
     padding: 24,
@@ -70,12 +70,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: "bold",
-    color: "#00201d",
+    color: "hsl(210, 20%, 12%)",
     fontFamily: "Manrope_700Bold",
   },
   subtitle: {
     fontSize: 14,
-    color: "#3f6b62",
+    color: "hsl(210, 10%, 40%)",
     marginTop: 4,
   },
   statsGrid: {
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 16,
     padding: 16,
-    shadowColor: '#003732',
+    shadowColor: '#7C3AED',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.08,
     shadowRadius: 12,
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 12,
-    backgroundColor: '#e4fff9',
+    backgroundColor: 'hsl(40, 20%, 98%)',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 12,
@@ -108,11 +108,11 @@ const styles = StyleSheet.create({
   statValue: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#00201d',
+    color: 'hsl(210, 20%, 12%)',
   },
   statLabel: {
     fontSize: 12,
-    color: '#3f6b62',
+    color: 'hsl(210, 10%, 40%)',
     marginTop: 4,
   },
   section: {
@@ -122,13 +122,13 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#00201d',
+    color: 'hsl(210, 20%, 12%)',
     marginBottom: 16,
   },
   appointmentCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#c5fff5',
+    backgroundColor: 'hsl(40, 15%, 94%)',
     borderRadius: 16,
     padding: 12,
     marginBottom: 12,
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: '#006b2c',
+    backgroundColor: '#7C3AED',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -153,16 +153,16 @@ const styles = StyleSheet.create({
   appointmentName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#00201d',
+    color: 'hsl(210, 20%, 12%)',
   },
   appointmentType: {
     fontSize: 12,
-    color: '#3f6b62',
+    color: 'hsl(210, 10%, 40%)',
     marginTop: 2,
   },
   appointmentTime: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#006b2c',
+    color: '#7C3AED',
   },
 });

@@ -5,18 +5,18 @@ export default function TabsLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: "#006b2c",
-        tabBarInactiveTintColor: "#3f6b62",
+        tabBarActiveTintColor: "#7C3AED",
+        tabBarInactiveTintColor: "hsl(210, 10%, 40%)",
         tabBarStyle: {
-          backgroundColor: "#e4fff9",
+          backgroundColor: "hsl(40, 20%, 98%)",
           borderTopWidth: 0,
           elevation: 0,
           shadowOpacity: 0,
         },
         headerStyle: {
-          backgroundColor: "#e4fff9",
+          backgroundColor: "hsl(40, 20%, 98%)",
         },
-        headerTintColor: "#00201d",
+        headerTintColor: "hsl(210, 20%, 12%)",
         headerTitleStyle: {
           fontFamily: "Manrope_700Bold",
         },

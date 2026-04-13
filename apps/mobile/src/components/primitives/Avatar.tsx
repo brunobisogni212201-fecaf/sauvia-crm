@@ -70,7 +70,7 @@ export function Avatar({
 
 const styles = StyleSheet.create({
   avatar: {
-    backgroundColor: "#006b2c",
+    backgroundColor: "#7C3AED",
     alignItems: "center",
     justifyContent: "center",
     overflow: "hidden",

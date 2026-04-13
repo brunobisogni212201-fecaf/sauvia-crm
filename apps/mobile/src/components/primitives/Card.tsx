@@ -13,7 +13,7 @@ interface CardProps {
 const variantStyles: Record<CardVariant, ViewStyle> = {
   default: {
     backgroundColor: "#fff",
-    shadowColor: "#003732",
+    shadowColor: "#7C3AED",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.08,
     shadowRadius: 12,
@@ -21,7 +21,7 @@ const variantStyles: Record<CardVariant, ViewStyle> = {
   },
   elevated: {
     backgroundColor: "#fff",
-    shadowColor: "#003732",
+    shadowColor: "#7C3AED",
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.12,
     shadowRadius: 24,

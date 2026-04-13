@@ -15,7 +15,16 @@ const poolData = {
   ClientId: process.env.NEXT_PUBLIC_COGNITO_CLIENT_ID ?? "",
 };
 
-const userPool = new CognitoUserPool(poolData);
+let userPool: CognitoUserPool | null = null;
+
+function getUserPool(): CognitoUserPool {
+  if (!poolData.UserPoolId || !poolData.ClientId) {
+    throw new Error("Cognito environment variables are not configured.");
+  }
+
+  userPool ??= new CognitoUserPool(poolData);
+  return userPool;
+}
 
 export interface CognitoTokens {
   idToken: string;
@@ -25,6 +34,7 @@ export interface CognitoTokens {
 
 /** Authenticate with email + password and return JWT tokens. */
 export function signIn(email: string, password: string): Promise<CognitoTokens> {
+  const userPool = getUserPool();
   const user = new CognitoUser({ Username: email, Pool: userPool });
   const authDetails = new AuthenticationDetails({ Username: email, Password: password });
 
@@ -46,13 +56,13 @@ export function signIn(email: string, password: string): Promise<CognitoTokens> 
 
 /** Sign out the current user (invalidates local session). */
 export function signOut(): void {
-  const user = userPool.getCurrentUser();
+  const user = getUserPool().getCurrentUser();
   user?.signOut();
 }
 
 /** Get the current session if the user has valid tokens. */
 export function getCurrentSession(): Promise<CognitoTokens | null> {
-  const user = userPool.getCurrentUser();
+  const user = getUserPool().getCurrentUser();
   if (!user) return Promise.resolve(null);
 
   return new Promise((resolve) => {

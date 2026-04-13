@@ -49,39 +49,39 @@ sauvia-app/
 
 ## 2. Design Tokens (Extraídos do Pencil)
 
-### Cores - Primary (Verde)
+### Cores - Primary (Roxo)
 
 ```css
---color-primary: #006b2c /* Principal */ --color-primary-light: #00a847
-  /* Hover/active */ --color-primary-dark: #004d1f /* Backgrounds escuros */;
+--color-primary: #7C3AED /* Principal */ --color-primary-light: #8B5CF6
+  /* Hover/active */ --color-primary-dark: #5B21B6 /* Backgrounds escuros */;
 ```
 
-### Cores - Secondary (Laranja)
+### Cores - Secondary (Lavanda)
 
 ```css
---color-secondary: #f97316 /* CTA/Accent */ --color-secondary-light: #fb923c
+--color-secondary: #A78BFA /* CTA/Accent */ --color-secondary-light: #C4B5FD
   /* Hover */;
 ```
 
-### Cores - Surface (Mint/Teal)
+### Cores - Surface (Neutro quente)
 
 ```css
---color-surface: #e4fff9 /* Background principal */
-  --color-surface-container: #c5fff5 /* Cards */
-  --color-surface-container-high: #a8f5e5 /* Elementos elevados */;
+--color-surface: hsl(40, 20%, 98%) /* Background principal */
+  --color-surface-container: hsl(40, 15%, 94%) /* Cards */
+  --color-surface-container-high: hsl(40, 10%, 90%) /* Elementos elevados */;
 ```
 
 ### Cores - Texto
 
 ```css
---color-on-surface: #00201d /* Texto primário */
-  --color-on-surface-variant: #3f6b62 /* Texto secundário */;
+--color-on-surface: hsl(210, 20%, 12%) /* Texto primário */
+  --color-on-surface-variant: hsl(210, 10%, 40%) /* Texto secundário */;
 ```
 
 ### Cores - Semânticas
 
 ```css
---color-error: #ba1a1a --color-success: #006b2c --color-warning: #f97316;
+--color-error: #ba1a1a --color-success: #16a34a --color-warning: #f59e0b;
 ```
 
 ### Tipografia
@@ -95,11 +95,11 @@ sauvia-app/
     body: 1rem (16px) - Default text small: 0.875rem (14px) - Secondary;
 ```
 
-### Sombras (Sempre verde-tinted!)
+### Sombras (Sempre roxo-tinted!)
 
 ```css
---shadow-sm: 0 1px 3px rgba(0, 55, 50, 0.06) --shadow-md: 0 4px 12px
-  rgba(0, 55, 50, 0.08) --shadow-lg: 0 8px 24px rgba(0, 55, 50, 0.12);
+--shadow-sm: 0 1px 3px rgba(124, 58, 237, 0.06) --shadow-md: 0 4px 12px
+  rgba(124, 58, 237, 0.08) --shadow-lg: 0 8px 24px rgba(124, 58, 237, 0.12);
 ```
 
 ### Border Radius
@@ -126,7 +126,7 @@ sauvia-app/
 ### ❌ Proibido
 
 1. **NUNCA usar borders de 1px** - Usar mudança de cor para separação
-2. **NUNCA usar sombras pretas** - Sempreverde-tinted (rgba(0, 55, 50, x))
+2. **NUNCA usar sombras pretas** - Sempre roxo-tinted (rgba(124, 58, 237, x))
 3. **NUNCA hardcoded dimensions em texto** - Usar textGrowth e layout
 
 ### ✅ Obrigatório

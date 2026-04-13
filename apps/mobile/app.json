@@ -11,9 +11,9 @@
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#006b2c",
+      "backgroundColor": "#7C3AED",
       "dark": {
-        "backgroundColor": "#004d1f"
+        "backgroundColor": "#5B21B6"
       }
     },
     "ios": {
@@ -23,7 +23,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#006b2c"
+        "backgroundColor": "#7C3AED"
       },
       "package": "com.sauvia.app",
       "edgeToEdgeEnabled": true

@@ -72,7 +72,7 @@ Created two high-converting landing pages with **Glassmorphism + Gradient Modern
 **URL:** `/landing-nutritionist`
 
 **Design Style:** Glassmorphism + Corporate Professional
-- **Primary Colors**: Green dominant (trust, growth)
+- **Primary Colors**: Purple dominant (brand primary)
 - **Emotional Quality**: Authority, professionalism, results-driven
 - **Target**: Nutritionists seeking practice management tools
 
@@ -103,7 +103,7 @@ Created two high-converting landing pages with **Glassmorphism + Gradient Modern
 **URL:** `/landing-client`
 
 **Design Style:** Glassmorphism + Gradient Modern + Organic
-- **Primary Colors**: Orange dominant (energy, warmth) + Green
+- **Primary Colors**: Lavender dominant + purple
 - **Emotional Quality**: Accessible, friendly, transformational
 - **Target**: End-users seeking nutrition guidance
 
@@ -136,13 +136,13 @@ Both landing pages strictly follow the Sauvia design system:
 
 ### Colors
 ```css
-Primary:        #006b2c  (Green - trust, health)
-Primary Light:  #00a847
-Primary Dark:   #004d1f
-Secondary:      #F97316  (Orange - energy, action)
-Surface:        #e4fff9  (Mint - freshness)
-On Surface:     #00201d  (Primary text)
-On Surface Var: #3f6b62  (Secondary text)
+Primary:        #7C3AED  (Purple brand primary)
+Primary Light:  #8B5CF6
+Primary Dark:   #5B21B6
+Secondary:      #A78BFA  (Lavender secondary)
+Surface:        hsl(40, 20%, 98%)  (Warm neutral surface)
+On Surface:     hsl(210, 20%, 12%)  (Primary text)
+On Surface Var: hsl(210, 10%, 40%)  (Secondary text)
 ```
 
 ### Typography
@@ -150,7 +150,7 @@ On Surface Var: #3f6b62  (Secondary text)
 - **Body**: Plus Jakarta Sans (body text, descriptions)
 
 ### Shadows
-All shadows use green-tinted `rgba(0, 55, 50, X)`:
+All shadows use purple-tinted `rgba(124, 58, 237, X)`:
 - sm: `0 1px 3px` - Subtle elevation
 - md: `0 4px 12px` - Cards
 - lg: `0 8px 24px` - Modals, overlays
@@ -274,7 +274,7 @@ pnpm --filter web start
 ### Design System
 ✅ Consistent colors across all pages  
 ✅ Typography hierarchy  
-✅ Green-tinted shadows  
+✅ Purple-tinted shadows
 ✅ Glassmorphism effects  
 ✅ Smooth animations  
 ✅ Accessible contrast ratios  

@@ -4,28 +4,28 @@
 
 ## Color Palette
 
-### Primary (Green)
-- `--color-primary`: `#006b2c` - Main brand color
-- `--color-primary-light`: `#00a847` - Hover/active states
-- `--color-primary-dark`: `#004d1f` - Dark backgrounds
+### Primary (Purple)
+- `--color-primary`: `#7C3AED` - Main brand color
+- `--color-primary-light`: `#8B5CF6` - Hover/active states
+- `--color-primary-dark`: `#5B21B6` - Dark backgrounds
 
-### Secondary (Orange)
-- `--color-secondary`: `#F97316` - Accent/CTA
-- `--color-secondary-light`: `#fb923c` - Hover states
+### Secondary (Lavender)
+- `--color-secondary`: `#A78BFA` - Accent/CTA
+- `--color-secondary-light`: `#C4B5FD` - Hover states
 
-### Surface (Teal/Mint)
-- `--color-surface`: `#e4fff9` - Main background
-- `--color-surface-container`: `#c5fff5` - Card backgrounds
-- `--color-surface-container-high`: `#a8f5e5` - Elevated elements
+### Surface (Warm neutral)
+- `--color-surface`: `hsl(40, 20%, 98%)` - Main background
+- `--color-surface-container`: `hsl(40, 15%, 94%)` - Card backgrounds
+- `--color-surface-container-high`: `hsl(40, 10%, 90%)` - Elevated elements
 
 ### Text
-- `--color-on-surface`: `#00201d` - Primary text
-- `--color-on-surface-variant`: `#3f6b62` - Secondary text
+- `--color-on-surface`: `hsl(210, 20%, 12%)` - Primary text
+- `--color-on-surface-variant`: `hsl(210, 10%, 40%)` - Secondary text
 
 ### Semantic
 - `--color-error`: `#ba1a1a`
-- `--color-success`: `#006b2c`
-- `--color-warning`: `#F97316`
+- `--color-success`: `#16a34a`
+- `--color-warning`: `#f59e0b`
 
 ## Typography
 
@@ -54,11 +54,11 @@ Based on Tailwind's default spacing scale:
 
 ## Shadows
 
-All shadows use `rgba(0, 55, 50, 0.06)` base - **never pure black**
+All shadows use `rgba(124, 58, 237, 0.06)` base - **never pure black**
 
-- **sm**: `0 1px 3px rgba(0, 55, 50, 0.06)` - Subtle elevation
-- **md**: `0 4px 12px rgba(0, 55, 50, 0.08)` - Cards, dropdowns
-- **lg**: `0 8px 24px rgba(0, 55, 50, 0.12)` - Modals, popovers
+- **sm**: `0 1px 3px rgba(124, 58, 237, 0.06)` - Subtle elevation
+- **md**: `0 4px 12px rgba(124, 58, 237, 0.08)` - Cards, dropdowns
+- **lg**: `0 8px 24px rgba(124, 58, 237, 0.12)` - Modals, popovers
 
 ## Border Radius
 
@@ -81,16 +81,16 @@ All shadows use `rgba(0, 55, 50, 0.06)` base - **never pure black**
 
 1. **NO 1px borders** - Use color changes for separation
 2. **Corner radius**: `1rem` for cards, full for buttons
-3. **Shadows**: Always use green-tinted shadows
+3. **Shadows**: Always use purple-tinted shadows
 4. **Glassmorphism**: `backdrop-blur: 20px` for overlays
 5. **Accessibility**: Maintain WCAG AA contrast ratios
 
 ## Component Guidelines
 
 ### Buttons
-- Primary: Green background, white text
-- Secondary: White background, green border
-- Ghost: Transparent, green text
+- Primary: Purple background, white text
+- Secondary: White background, purple border
+- Ghost: Transparent, purple text
 - Full rounded (`rounded-full`)
 
 ### Cards
@@ -102,7 +102,7 @@ All shadows use `rgba(0, 55, 50, 0.06)` base - **never pure black**
 ### Inputs
 - Light background
 - `rounded-xl` 
-- Focus: Green ring
+- Focus: Purple ring
 - Padding: `px-4 py-3`
 
 ### Navigation

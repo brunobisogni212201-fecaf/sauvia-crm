@@ -134,20 +134,20 @@ import {
 
 ### Colors
 ```css
-Primary:        #006b2c  (Green)
-Primary Light:  #00a847
-Primary Dark:   #004d1f
-Secondary:      #F97316  (Orange)
-Surface:        #e4fff9  (Mint background)
-On Surface:     #00201d  (Primary text)
-On Surface Var: #3f6b62  (Secondary text)
+Primary:        #7C3AED  (Purple)
+Primary Light:  #8B5CF6
+Primary Dark:   #5B21B6
+Secondary:      #A78BFA  (Lavender)
+Surface:        hsl(40, 20%, 98%)  (Warm neutral background)
+On Surface:     hsl(210, 20%, 12%)  (Primary text)
+On Surface Var: hsl(210, 10%, 40%)  (Secondary text)
 ```
 
-### Shadows (Always green-tinted!)
+### Shadows (Always purple-tinted!)
 ```css
-sm: 0 1px 3px rgba(0, 55, 50, 0.06)
-md: 0 4px 12px rgba(0, 55, 50, 0.08)
-lg: 0 8px 24px rgba(0, 55, 50, 0.12)
+sm: 0 1px 3px rgba(124, 58, 237, 0.06)
+md: 0 4px 12px rgba(124, 58, 237, 0.08)
+lg: 0 8px 24px rgba(124, 58, 237, 0.12)
 ```
 
 ### Border Radius
@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 16,
     padding: 12,
-    shadowColor: '#003732',
+    shadowColor: '#7C3AED',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.08,
     shadowRadius: 12,
@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: '#006b2c',
+    backgroundColor: '#7C3AED',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#00201d',
+    color: 'hsl(210, 20%, 12%)',
     marginTop: 8,
   },
   badge: {
@@ -249,7 +249,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   badgeActive: {
-    backgroundColor: '#a8f5e5',
+    backgroundColor: 'hsl(40, 10%, 90%)',
   },
 });
 ```
@@ -258,7 +258,7 @@ const styles = StyleSheet.create({
 
 1. ❌ **NO 1px borders** - Use color changes for separation
 2. ✅ **Corner radius** - 1rem for cards, full for buttons
-3. ✅ **Green shadows** - Never use pure black shadows
+3. ✅ **Purple shadows** - Never use pure black shadows
 4. ✅ **Glassmorphism** - Use for overlays and navigation
 5. ✅ **Accessibility** - Maintain WCAG AA contrast
 

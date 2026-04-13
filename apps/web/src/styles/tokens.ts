@@ -3,36 +3,36 @@
 // Use these tokens to ensure consistency across the application
 
 export const colors = {
-  // Primary (Green)
+  // Primary (Purple)
   primary: {
-    DEFAULT: '#006b2c',
-    light: '#00a847',
-    dark: '#004d1f',
+    DEFAULT: '#7C3AED',
+    light: '#8B5CF6',
+    dark: '#5B21B6',
   },
   
-  // Secondary (Orange)
+  // Secondary (Lavender)
   secondary: {
-    DEFAULT: '#F97316',
-    light: '#fb923c',
+    DEFAULT: '#A78BFA',
+    light: '#C4B5FD',
   },
   
-  // Surface (Teal/Mint)
+  // Surface (Warm neutral)
   surface: {
-    DEFAULT: '#e4fff9',
-    container: '#c5fff5',
-    containerHigh: '#a8f5e5',
+    DEFAULT: 'hsl(40, 20%, 98%)',
+    container: 'hsl(40, 15%, 94%)',
+    containerHigh: 'hsl(40, 10%, 90%)',
   },
   
   // Text
   onSurface: {
-    DEFAULT: '#00201d',
-    variant: '#3f6b62',
+    DEFAULT: 'hsl(210, 20%, 12%)',
+    variant: 'hsl(210, 10%, 40%)',
   },
   
   // Semantic
   error: '#ba1a1a',
-  success: '#006b2c',
-  warning: '#F97316',
+  success: '#16a34a',
+  warning: '#f59e0b',
 } as const;
 
 export const typography = {
@@ -71,9 +71,9 @@ export const spacing = {
 } as const;
 
 export const shadows = {
-  sm: '0 1px 3px rgba(0, 55, 50, 0.06)',
-  md: '0 4px 12px rgba(0, 55, 50, 0.08)',
-  lg: '0 8px 24px rgba(0, 55, 50, 0.12)',
+  sm: '0 1px 3px rgba(124, 58, 237, 0.06)',
+  md: '0 4px 12px rgba(124, 58, 237, 0.08)',
+  lg: '0 8px 24px rgba(124, 58, 237, 0.12)',
 } as const;
 
 export const borderRadius = {

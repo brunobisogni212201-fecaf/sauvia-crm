@@ -581,7 +581,7 @@ const icons: Record<IconName, React.FC<{ size: number; color: string }>> = {
   ),
 };
 
-export function Icon({ name, size = 24, color = "#00201d" }: IconProps) {
+export function Icon({ name, size = 24, color = "hsl(210, 20%, 12%)" }: IconProps) {
   const IconComponent = icons[name];
   if (!IconComponent) {
     console.warn(`Icon "${name}" not found`);

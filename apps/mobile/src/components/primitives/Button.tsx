@@ -23,11 +23,11 @@ interface ButtonProps {
 }
 
 const variantStyles: Record<ButtonVariant, ViewStyle> = {
-  primary: { backgroundColor: "#006b2c" },
+  primary: { backgroundColor: "#7C3AED" },
   secondary: {
     backgroundColor: "#fff",
     borderWidth: 2,
-    borderColor: "#006b2c",
+    borderColor: "#7C3AED",
   },
   ghost: { backgroundColor: "transparent" },
   danger: { backgroundColor: "#ba1a1a" },
@@ -41,8 +41,8 @@ const sizeStyles: Record<ButtonSize, { padding: number; fontSize: number }> = {
 
 const textColorStyles: Record<ButtonVariant, string> = {
   primary: "#fff",
-  secondary: "#006b2c",
-  ghost: "#006b2c",
+  secondary: "#7C3AED",
+  ghost: "#7C3AED",
   danger: "#fff",
 };
 

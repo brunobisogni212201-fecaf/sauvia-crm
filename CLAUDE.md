@@ -321,17 +321,17 @@ psql -h rds-endpoint.rds.amazonaws.com -U admin -d sau via
 
 ### Cores
 ```css
---primary: #006b2c      /* Verde principal */
---secondary: #F97316    /* Laranja energia */
---surface: #e4fff9      /* Background */
---surface-container-low: #c5fff5  /* Cards */
---on-surface: #00201d   /* Texto */
+--primary: #7C3AED      /* Roxo principal */
+--secondary: #A78BFA    /* Lavanda */
+--surface: hsl(40, 20%, 98%)      /* Background */
+--surface-container-low: hsl(40, 15%, 94%)  /* Cards */
+--on-surface: hsl(210, 20%, 12%)   /* Texto */
 ```
 
 ### Regras
 - **NUNCA** usar borders 1px - usar mudança de cor
 - Corner radius: 1rem cards, full botões
-- Sombras: `rgba(0, 55, 50, 0.06)` - nunca preto
+- Sombras: `rgba(124, 58, 237, 0.06)` - nunca preto
 - Glassmorphism: `backdrop-blur: 20px`
 
 ---

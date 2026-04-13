@@ -62,9 +62,9 @@ const styles = StyleSheet.create({
 ### Available Tokens
 
 #### Colors
-- **Primary**: Green brand colors (`#006b2c`, `#00a847`, `#004d1f`)
-- **Secondary**: Orange accent colors (`#F97316`, `#fb923c`)
-- **Surface**: Mint/teal backgrounds (`#e4fff9`, `#c5fff5`, `#a8f5e5`)
+- **Primary**: Purple brand colors (`#7C3AED`, `#8B5CF6`, `#5B21B6`)
+- **Secondary**: Lavender accent colors (`#A78BFA`, `#C4B5FD`)
+- **Surface**: Warm neutral backgrounds (`hsl(40, 20%, 98%)`, `hsl(40, 15%, 94%)`, `hsl(40, 10%, 90%)`)
 - **Text**: Primary and secondary text colors
 - **Semantic**: Error, success, warning colors
 
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
 Consistent spacing scale from xs (4px) to 3xl (48px)
 
 #### Shadows
-Green-tinted shadows (never pure black!)
+Purple-tinted shadows (never pure black!)
 - sm: Subtle elevation
 - md: Card elevation
 - lg: Modal elevation
@@ -194,7 +194,7 @@ await AsyncStorage.getItem(STORAGE_KEYS.AUTH_TOKEN);
 
 ❌ **Don't** hardcode values:
 ```typescript
-backgroundColor: '#006b2c'
+backgroundColor: '#7C3AED'
 ```
 
 ✅ **Do** use tokens:
