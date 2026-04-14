@@ -34,7 +34,7 @@ export default function RootLayout({
   return (
     <ClerkProvider
       publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
-      afterSignOutUrl="/"
+      afterSignOutUrl={process.env.CLERK_SIGN_IN_URL || "/"}
     >
       <html lang="pt-BR">
         <body
