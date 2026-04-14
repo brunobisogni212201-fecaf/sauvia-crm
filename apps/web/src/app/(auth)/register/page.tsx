@@ -165,7 +165,7 @@ export default function RegisterPage() {
     setSelectedProfile(null);
   }
 
-  async function onSubmit(data: unknown) {
+  async function onSubmit(data: Record<string, unknown>) {
     setServerError("");
     try {
       console.log("Register data:", { profile: selectedProfile, ...data });
