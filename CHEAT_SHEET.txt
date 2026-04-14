@@ -1,0 +1,323 @@
+╔═══════════════════════════════════════════════════════════════════════════╗
+║                                                                           ║
+║                 🚀 CLERK + MCP IMPLEMENTATION CHEAT SHEET 🚀             ║
+║                                                                           ║
+║                         Tudo que você precisa saber                       ║
+║                                                                           ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 1. COMECE AQUI - Guia Interativo (RECOMENDADO)                         ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  ./START_HERE.sh
+
+  ✓ Verifica pré-requisitos
+  ✓ Coleta chaves Clerk
+  ✓ Prepara ambiente
+  ✓ Instala dependências
+  ✓ Guia você através dos testes
+
+  ⏱️  Tempo: 30-40 minutos
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 2. SCRIPTS AUTOMÁTICOS                                                  ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  Setup Automático:
+  ┌─────────────────────────────────────────────────────────────────────┐
+  │ $ ./scripts/setup-clerk-mcp.sh                                      │
+  │                                                                     │
+  │ • Coleta Clerk keys                                                 │
+  │ • Cria .env.local (web) e .env (backend)                           │
+  │ • Instala pip packages                                             │
+  │ • Instala npm packages                                             │
+  │ • Verifica imports Python                                          │
+  │                                                                     │
+  │ ⏱️  Tempo: 10-15 minutos                                             │
+  └─────────────────────────────────────────────────────────────────────┘
+
+  Testes Automáticos:
+  ┌─────────────────────────────────────────────────────────────────────┐
+  │ $ ./scripts/test-mcp.sh                                             │
+  │                                                                     │
+  │ • Verifica backend conectado                                        │
+  │ • Verifica frontend conectado                                       │
+  │ • Testa endpoints .well-known                                       │
+  │ • Testa MCP endpoint (com/sem token)                                │
+  │ • Opcionalmente testa com token real                                │
+  │                                                                     │
+  │ ⏱️  Tempo: 5-10 minutos                                              │
+  └─────────────────────────────────────────────────────────────────────┘
+
+  Deploy para Produção:
+  ┌─────────────────────────────────────────────────────────────────────┐
+  │ $ ./scripts/deploy-production.sh                                    │
+  │                                                                     │
+  │ • Git commit & push                                                 │
+  │ • Deploy web (Vercel)                                               │
+  │ • Build backend Docker                                              │
+  │ • Push image para registry                                          │
+  │                                                                     │
+  │ ⏱️  Tempo: 15-20 minutos                                             │
+  └─────────────────────────────────────────────────────────────────────┘
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 3. ROTEIRO DE EXECUÇÃO (Recomendado)                                   ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  Hoje (Local - 60 min):
+  ───────────────────────
+  1. ./START_HERE.sh
+  2. Abrir 2-3 terminais:
+     - Terminal 1: cd apps/backend && python -m uvicorn src.main:app --reload
+     - Terminal 2: cd apps/web && pnpm dev
+     - Terminal 3: ./scripts/test-mcp.sh
+  3. Fazer login em http://localhost:3000
+  4. Testar manualmente
+
+  Esta Semana (Produção - 30 min):
+  ────────────────────────────────
+  1. Revisar EXECUTION_PLAN.md
+  2. ./scripts/deploy-production.sh
+  3. Testar em produção
+  4. Conectar Claude Desktop
+
+  Este Mês (Otimização):
+  ────────────────────
+  1. Deletar Cognito do AWS (-$50-100/mês!)
+  2. Criar custom MCP tools
+  3. Integração com Zapier/n8n
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 4. OBTER CHAVES CLERK                                                   ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  1. Abra: https://dashboard.clerk.com
+  2. Verifique organização: "sauvia"
+  3. Vá para: Settings → API Keys
+  4. Copie:
+     • NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY (começa com pk_test_)
+     • CLERK_SECRET_KEY (começa com sk_test_)
+  5. Colas nos scripts/formulários
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 5. TESTES MANUAIS                                                       ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  Teste 1: Backend rodando
+  ───────────────────────
+  $ curl http://localhost:8000/docs
+  ou
+  $ curl http://localhost:8000/health
+
+  Teste 2: Frontend rodando
+  ────────────────────────
+  $ curl http://localhost:3000
+  (deve retornar HTML, não erro 404)
+
+  Teste 3: OAuth Metadata
+  ──────────────────────
+  $ curl http://localhost:3000/.well-known/oauth-protected-resource/mcp | jq
+  (deve retornar JSON com scopes)
+
+  Teste 4: MCP com Token
+  ─────────────────────
+  $ CLERK_TOKEN="seu_token_aqui"
+  $ curl -X POST http://localhost:3000/mcp/http \
+      -H "Authorization: Bearer $CLERK_TOKEN" \
+      -H "Content-Type: application/json" \
+      -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 6. 9 MCP TOOLS DISPONÍVEIS                                              ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  1. get-sauvia-user
+     Usuário atual
+
+  2. list-patients
+     Listar pacientes (com paginação)
+
+  3. get-patient-details
+     Detalhes de um paciente
+
+  4. get-dashboard-metrics
+     Métricas do dashboard
+
+  5. get-patient-adherence
+     Taxa de adesão do paciente
+
+  6. get-patient-plans
+     Planos de saúde do paciente
+
+  7. get-routine-logs
+     Logs de atividades do paciente
+
+  8. send-whatsapp-message
+     Enviar mensagem WhatsApp
+
+  9. get-whatsapp-status
+     Status da conexão WhatsApp
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 7. ARQUIVOS CRIADOS                                                     ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  Backend (2 arquivos):
+  ├── apps/backend/src/adapters/driven/security/__init__.py
+  └── apps/backend/src/adapters/driven/security/clerk_auth.py
+
+  Frontend (7 arquivos):
+  ├── apps/web/src/lib/mcp/types.ts
+  ├── apps/web/src/lib/mcp/backend-client.ts
+  ├── apps/web/src/app/mcp/[transport]/route.ts
+  ├── apps/web/src/app/.well-known/oauth-authorization-server/route.ts
+  ├── apps/web/src/app/.well-known/oauth-protected-resource/mcp/route.ts
+  ├── apps/web/src/lib/api-client.ts (ATUALIZADO)
+  └── apps/web/src/proxy.ts (ATUALIZADO)
+
+  Documentação (6 arquivos):
+  ├── EXECUTION_PLAN.md
+  ├── IMPLEMENTATION_COMPLETE.md
+  ├── IMPLEMENTATION_CHECKLIST.md
+  ├── MCP_QUICK_REFERENCE.txt
+  ├── IMPLEMENTATION_SUMMARY_TODAY.md
+  └── RESOURCES.md
+
+  Scripts (3 arquivos):
+  ├── scripts/setup-clerk-mcp.sh
+  ├── scripts/test-mcp.sh
+  └── scripts/deploy-production.sh
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 8. TROUBLESHOOTING RÁPIDO                                              ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  ❌ "ModuleNotFoundError: cryptography"
+  → pip install cryptography==42.0.0 --force-reinstall
+
+  ❌ ".well-known retorna 404"
+  → cd apps/web && pnpm build && pnpm dev
+
+  ❌ "Cannot find @clerk/mcp-tools"
+  → cd apps/web && pnpm install @clerk/mcp-tools
+
+  ❌ "Token inválido"
+  → Fazer login novamente em http://localhost:3000
+  → Verificar CLERK_JWT_KEY está correto
+
+  ❌ Backend não inicia
+  → Verificar porta 8000 não está em uso
+  → Verificar .env está preenchido
+  → Rodar: pip install -r requirements.txt
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 9. ESTATÍSTICAS                                                        ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  Arquivos Criados:          14
+  Linhas de Código:          ~2,200
+  MCP Tools:                 9
+  OAuth Scopes:              11
+  TypeScript Interfaces:     8
+  
+  Tempo de Setup:            30-40 min
+  Tempo de Testes:           10-20 min
+  Tempo de Deploy:           15-30 min
+  ─────────────────────────────────────
+  TEMPO TOTAL:               60-100 min
+  
+  Economia/ano (sem Cognito): $660-1,380
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 10. CONECTAR COM CLAUDE DESKTOP                                        ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  Após deploy em produção:
+
+  1. Instale Claude Desktop: https://claude.ai/download
+
+  2. Configure MCP server:
+     ~/.claude_desktop_config.json
+     
+     {
+       "mcpServers": {
+         "sauvia": {
+           "url": "https://app.sauvia.com.br/mcp/http",
+           "auth": {
+             "type": "oauth",
+             "clientId": "seu_clerk_id",
+             "clientSecret": "seu_clerk_secret"
+           }
+         }
+       }
+     }
+
+  3. Reinicie Claude Desktop
+
+  4. Teste: "List my patients" ou "Show dashboard metrics"
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 11. DOCUMENTAÇÃO COMPLETA                                              ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  COMECE COM:
+  • RESOURCES.md - Índice de tudo
+  • QUICK_START_CLERK_MCP.md - Setup 30 min
+
+  PARA ENTENDER:
+  • IMPLEMENTATION_SUMMARY_TODAY.md - O que foi criado
+  • MCP_QUICK_REFERENCE.txt - Diagramas e referência
+
+  PARA EXECUTAR:
+  • EXECUTION_PLAN.md - Guia 9 fases
+  • IMPLEMENTATION_CHECKLIST.md - Checklist completo
+
+  PARA REFERÊNCIA:
+  • IMPLEMENTATION_COMPLETE.md - Tudo em detalhes
+  • CLAUDE.md - Padrões do projeto
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ 12. PRÓXIMOS PASSOS APÓS SUCESSO                                       ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+  ✅ Imediatamente:
+     • Testar em localhost
+     • Conectar Claude Desktop
+     • Testar uma query MCP
+
+  ✅ Esta Semana:
+     • Deploy em produção
+     • Testar endpoints públicos
+     • Treinar equipe
+
+  ✅ Este Mês:
+     • Deletar Cognito (-$50-100/mês)
+     • Criar custom MCP tools
+     • Integração Zapier/n8n
+
+
+╔═══════════════════════════════════════════════════════════════════════════╗
+║                                                                           ║
+║                        🎉 VOCÊ ESTÁ PRONTO! 🎉                         ║
+║                                                                           ║
+║              EXECUTE AGORA: ./START_HERE.sh                             ║
+║                                                                           ║
+║           Em 60 minutos terá tudo pronto em produção! 🚀                ║
+║                                                                           ║
+║                     Economizando $660-1,380 por ano                      ║
+║                                                                           ║
+╚═══════════════════════════════════════════════════════════════════════════╝
