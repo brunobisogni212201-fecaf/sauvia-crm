@@ -2,17 +2,16 @@
 
 import logging
 import os
-from datetime import datetime
 from functools import lru_cache
-from typing import Any, Dict, Optional
+from typing import Any, Dict
 
 import httpx
 import jwt
 from fastapi import HTTPException, status
+from jwt import PyJWK
 
 logger = logging.getLogger(__name__)
 
-CLERK_JWT_KEY = os.getenv("CLERK_JWT_KEY", "")
 CLERK_API_URL = "https://api.clerk.com/v1"
 
 
@@ -48,6 +47,28 @@ def get_clerk_public_keys() -> Dict[str, Any]:
         raise ClerkAuthError(f"Erro ao obter chaves públicas Clerk: {str(e)}")
 
 
+def get_public_key_from_jwk(jwk: Dict[str, Any]) -> Any:
+    """
+    Convert JWK (JSON Web Key) to cryptographic key object.
+
+    Args:
+        jwk: JWK dictionary from Clerk JWKS
+
+    Returns:
+        Public key object suitable for RS256 verification
+
+    Raises:
+        ClerkAuthError: If conversion fails
+    """
+    try:
+        # Use PyJWT's PyJWK to convert JWK to key object
+        pyjwk = PyJWK.from_dict(jwk)
+        return pyjwk.key
+    except Exception as e:
+        logger.error(f"Error converting JWK to key: {str(e)}")
+        raise ClerkAuthError(f"Erro ao converter chave pública: {str(e)}")
+
+
 def verify_clerk_token(token: str) -> Dict[str, Any]:
     """
     Verify Clerk JWT token using RS256 algorithm.
@@ -69,43 +90,58 @@ def verify_clerk_token(token: str) -> Dict[str, Any]:
         if token.startswith("Bearer "):
             token = token[7:]
 
-        # First decode without verification to get kid from header
-        unverified = jwt.decode(token, options={"verify_signature": False})
+        # Get token header to extract kid (key ID)
+        try:
+            header = jwt.get_unverified_header(token)
+        except jwt.DecodeError as e:
+            raise ClerkAuthError(f"Token malformado: {str(e)}")
 
-        # Get public keys from Clerk
-        keys_response = get_clerk_public_keys()
-        public_keys = {key["kid"]: key for key in keys_response.get("keys", [])}
-
-        # Get the key ID from token header
-        header = jwt.get_unverified_header(token)
         kid = header.get("kid")
+        if not kid:
+            raise ClerkAuthError("Key ID (kid) não encontrado no token")
 
-        if not kid or kid not in public_keys:
-            raise ClerkAuthError("Key ID inválido no token")
+        # Fetch Clerk's public keys
+        keys_response = get_clerk_public_keys()
+        keys = keys_response.get("keys", [])
 
-        # Get the public key in PEM format
-        key_data = public_keys[kid]
+        # Find the key matching the kid
+        matching_key = None
+        for key in keys:
+            if key.get("kid") == kid:
+                matching_key = key
+                break
 
-        # Verify with correct public key
+        if not matching_key:
+            logger.warning(f"Chave pública não encontrada para kid: {kid}")
+            raise ClerkAuthError(f"Chave pública não encontrada para kid: {kid}")
+
+        # Convert JWK to public key object
+        public_key = get_public_key_from_jwk(matching_key)
+
+        # Verify and decode token with RS256
         decoded = jwt.decode(
             token,
+            public_key,
             algorithms=["RS256"],
-            options={"verify_signature": True},
             audience=os.getenv("CLERK_AUDIENCE"),  # Optional: verify audience if set
-            # Note: PyJWT with RS256 requires the key to be in the right format.
-            # If the above fails, you may need: jwt.PyJWK.from_dict(key_data).key
         )
 
-        logger.info(f"Token verified for user: {decoded.get('sub')}")
+        logger.info(f"Token verificado para usuário: {decoded.get('sub')}")
         return decoded
 
     except jwt.ExpiredSignatureError:
+        logger.warning("Token expirado")
         raise ClerkAuthError("Token expirado")
+    except jwt.InvalidSignatureError:
+        logger.warning("Assinatura do token inválida")
+        raise ClerkAuthError("Assinatura do token inválida")
     except jwt.InvalidTokenError as e:
-        logger.warning(f"Invalid token: {str(e)}")
+        logger.warning(f"Token inválido: {str(e)}")
         raise ClerkAuthError(f"Token inválido: {str(e)}")
+    except ClerkAuthError:
+        raise
     except Exception as e:
-        logger.error(f"Error verifying token: {str(e)}")
+        logger.error(f"Erro ao verificar token: {str(e)}")
         raise ClerkAuthError(f"Erro ao verificar token: {str(e)}")
 
 
