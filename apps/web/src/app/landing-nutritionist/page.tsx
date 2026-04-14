@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@sauvia/ui";
+import { Button } from "@/components/primitives/Button";
 import { motion } from "framer-motion";
 import {
   CalendarDays,

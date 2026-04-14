@@ -4,9 +4,9 @@ import {
   ClerkProvider,
   SignInButton,
   SignUpButton,
-  Show,
   UserButton,
 } from "@clerk/nextjs";
+import { Show } from "@/components/clerk/Show";
 import "./globals.css";
 
 const instrumentSerif = Instrument_Serif({

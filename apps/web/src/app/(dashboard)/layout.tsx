@@ -1,4 +1,4 @@
-import { Sidebar, NavItem } from "@sauvia/ui";
+import { Sidebar, NavItem } from "@/components/navigation/Sidebar";
 import {
   LayoutDashboard,
   Users,
