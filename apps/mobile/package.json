@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@sauvia/ui-icons": "workspace:*",
-    "@clerk/clerk-expo": "^0.23.0",
+    "@clerk/clerk-expo": "^2.19.31",
     "expo": "~55.0.12",
     "expo-auth-session": "~55.0.5",
     "expo-constants": "~55.0.5",
