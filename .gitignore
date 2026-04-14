@@ -72,6 +72,9 @@ tasks.json
 tasks/
 *.pen
 
+# Documentation
+*.md
+
 # Local agent state
 .claude/
 .taskmaster/
