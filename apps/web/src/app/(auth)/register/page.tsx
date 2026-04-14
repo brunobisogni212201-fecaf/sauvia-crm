@@ -145,7 +145,7 @@ export default function RegisterPage() {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm({
+  } = useForm<Record<string, unknown>>({
     resolver: zodResolver(
       selectedProfile === "nutritionist"
         ? nutritionistSchema
@@ -302,12 +302,12 @@ export default function RegisterPage() {
                           border-2 transition-all duration-200
                           placeholder:text-on-surface-variant/40
                           focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20
-                          ${errors.fullName ? "border-error" : "border-surface-container"}
+                          ${(errors as Record<string, { message: string }>).fullName ? "border-error" : "border-surface-container"}
                         `}
                       />
-                      {errors.fullName && (
+                      {(errors as Record<string, { message: string }>).fullName && (
                         <p className="mt-1.5 text-sm text-error">
-                          {errors.fullName.message}
+                          {(errors as Record<string, { message: string }>).fullName.message}
                         </p>
                       )}
                     </div>
@@ -327,12 +327,12 @@ export default function RegisterPage() {
                             border-2 transition-all duration-200
                             placeholder:text-on-surface-variant/40
                             focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20
-                            ${errors.crn ? "border-error" : "border-surface-container"}
+                            ${(errors as Record<string, { message: string }>).crn ? "border-error" : "border-surface-container"}
                           `}
                         />
-                        {errors.crn && (
+                        {(errors as Record<string, { message: string }>).crn && (
                           <p className="mt-1.5 text-sm text-error">
-                            {errors.crn.message}
+                            {(errors as Record<string, { message: string }>).crn.message}
                           </p>
                         )}
                       </div>
@@ -350,12 +350,12 @@ export default function RegisterPage() {
                             border-2 transition-all duration-200
                             placeholder:text-on-surface-variant/40
                             focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20
-                            ${errors.phone ? "border-error" : "border-surface-container"}
+                            ${(errors as Record<string, { message: string }>).phone ? "border-error" : "border-surface-container"}
                           `}
                         />
-                        {errors.phone && (
+                        {(errors as Record<string, { message: string }>).phone && (
                           <p className="mt-1.5 text-sm text-error">
-                            {errors.phone.message}
+                            {(errors as Record<string, { message: string }>).phone.message}
                           </p>
                         )}
                       </div>
@@ -377,13 +377,13 @@ export default function RegisterPage() {
                             border-2 transition-all duration-200
                             placeholder:text-on-surface-variant/40
                             focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20
-                            ${errors.email ? "border-error" : "border-surface-container"}
+                            ${(errors as Record<string, { message: string }>).email ? "border-error" : "border-surface-container"}
                           `}
                         />
                       </div>
-                      {errors.email && (
+                      {(errors as Record<string, { message: string }>).email && (
                         <p className="mt-1.5 text-sm text-error">
-                          {errors.email.message}
+                          {(errors as Record<string, { message: string }>).email.message}
                         </p>
                       )}
                     </div>
@@ -406,12 +406,12 @@ export default function RegisterPage() {
                           border-2 transition-all duration-200
                           placeholder:text-on-surface-variant/40
                           focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20
-                          ${errors.fullName ? "border-error" : "border-surface-container"}
+                          ${(errors as Record<string, { message: string }>).fullName ? "border-error" : "border-surface-container"}
                         `}
                       />
-                      {errors.fullName && (
+                      {(errors as Record<string, { message: string }>).fullName && (
                         <p className="mt-1.5 text-sm text-error">
-                          {errors.fullName.message}
+                          {(errors as Record<string, { message: string }>).fullName.message}
                         </p>
                       )}
                     </div>
@@ -431,12 +431,12 @@ export default function RegisterPage() {
                             border-2 transition-all duration-200
                             placeholder:text-on-surface-variant/40
                             focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20
-                            ${errors.cpf ? "border-error" : "border-surface-container"}
+                            ${(errors as Record<string, { message: string }>).cpf ? "border-error" : "border-surface-container"}
                           `}
                         />
-                        {errors.cpf && (
+                        {(errors as Record<string, { message: string }>).cpf && (
                           <p className="mt-1.5 text-sm text-error">
-                            {errors.cpf.message}
+                            {(errors as Record<string, { message: string }>).cpf.message}
                           </p>
                         )}
                       </div>
@@ -454,12 +454,12 @@ export default function RegisterPage() {
                             border-2 transition-all duration-200
                             placeholder:text-on-surface-variant/40
                             focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20
-                            ${errors.phone ? "border-error" : "border-surface-container"}
+                            ${(errors as Record<string, { message: string }>).phone ? "border-error" : "border-surface-container"}
                           `}
                         />
-                        {errors.phone && (
+                        {(errors as Record<string, { message: string }>).phone && (
                           <p className="mt-1.5 text-sm text-error">
-                            {errors.phone.message}
+                            {(errors as Record<string, { message: string }>).phone.message}
                           </p>
                         )}
                       </div>
@@ -481,13 +481,13 @@ export default function RegisterPage() {
                             border-2 transition-all duration-200
                             placeholder:text-on-surface-variant/40
                             focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20
-                            ${errors.email ? "border-error" : "border-surface-container"}
+                            ${(errors as Record<string, { message: string }>).email ? "border-error" : "border-surface-container"}
                           `}
                         />
                       </div>
-                      {errors.email && (
+                      {(errors as Record<string, { message: string }>).email && (
                         <p className="mt-1.5 text-sm text-error">
-                          {errors.email.message}
+                          {(errors as Record<string, { message: string }>).email.message}
                         </p>
                       )}
                     </div>
@@ -503,7 +503,7 @@ export default function RegisterPage() {
                           bg-white text-on-surface
                           border-2 transition-all duration-200
                           focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20
-                          ${errors.objetivo ? "border-error" : "border-surface-container"}
+                          ${(errors as Record<string, { message: string }>).objetivo ? "border-error" : "border-surface-container"}
                         `}
                       >
                         <option value="">Selecione...</option>
@@ -513,9 +513,9 @@ export default function RegisterPage() {
                         <option value="saude">Melhorar saúde</option>
                         <option value="esporte">Performance esportiva</option>
                       </select>
-                      {errors.objetivo && (
+                      {(errors as Record<string, { message: string }>).objetivo && (
                         <p className="mt-1.5 text-sm text-error">
-                          {errors.objetivo.message}
+                          {(errors as Record<string, { message: string }>).objetivo.message}
                         </p>
                       )}
                     </div>
@@ -539,12 +539,12 @@ export default function RegisterPage() {
                             border-2 transition-all duration-200
                             placeholder:text-on-surface-variant/40
                             focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20
-                            ${errors.companyName ? "border-error" : "border-surface-container"}
+                            ${(errors as Record<string, { message: string }>).companyName ? "border-error" : "border-surface-container"}
                           `}
                         />
-                        {errors.companyName && (
+                        {(errors as Record<string, { message: string }>).companyName && (
                           <p className="mt-1.5 text-sm text-error">
-                            {errors.companyName.message}
+                            {(errors as Record<string, { message: string }>).companyName.message}
                           </p>
                         )}
                       </div>
@@ -562,12 +562,12 @@ export default function RegisterPage() {
                             border-2 transition-all duration-200
                             placeholder:text-on-surface-variant/40
                             focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20
-                            ${errors.cnpj ? "border-error" : "border-surface-container"}
+                            ${(errors as Record<string, { message: string }>).cnpj ? "border-error" : "border-surface-container"}
                           `}
                         />
-                        {errors.cnpj && (
+                        {(errors as Record<string, { message: string }>).cnpj && (
                           <p className="mt-1.5 text-sm text-error">
-                            {errors.cnpj.message}
+                            {(errors as Record<string, { message: string }>).cnpj.message}
                           </p>
                         )}
                       </div>
@@ -585,7 +585,7 @@ export default function RegisterPage() {
                             border-2 transition-all duration-200
                             placeholder:text-on-surface-variant/40
                             focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20
-                            ${errors.employees ? "border-error" : "border-surface-container"}
+                            ${(errors as Record<string, { message: string }>).employees ? "border-error" : "border-surface-container"}
                           `}
                         />
                       </div>
@@ -606,7 +606,7 @@ export default function RegisterPage() {
                             border-2 transition-all duration-200
                             placeholder:text-on-surface-variant/40
                             focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20
-                            ${errors.responsibleName ? "border-error" : "border-surface-container"}
+                            ${(errors as Record<string, { message: string }>).responsibleName ? "border-error" : "border-surface-container"}
                           `}
                         />
                       </div>
@@ -624,7 +624,7 @@ export default function RegisterPage() {
                             border-2 transition-all duration-200
                             placeholder:text-on-surface-variant/40
                             focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20
-                            ${errors.phone ? "border-error" : "border-surface-container"}
+                            ${(errors as Record<string, { message: string }>).phone ? "border-error" : "border-surface-container"}
                           `}
                         />
                       </div>
@@ -646,7 +646,7 @@ export default function RegisterPage() {
                             border-2 transition-all duration-200
                             placeholder:text-on-surface-variant/40
                             focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20
-                            ${errors.corporateEmail ? "border-error" : "border-surface-container"}
+                            ${(errors as Record<string, { message: string }>).corporateEmail ? "border-error" : "border-surface-container"}
                           `}
                         />
                       </div>
@@ -671,7 +671,7 @@ export default function RegisterPage() {
                         border-2 transition-all duration-200
                         placeholder:text-on-surface-variant/40
                         focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20
-                        ${errors.password ? "border-error" : "border-surface-container"}
+                        ${(errors as Record<string, { message: string }>).password ? "border-error" : "border-surface-container"}
                       `}
                     />
                     <button
@@ -686,9 +686,9 @@ export default function RegisterPage() {
                       )}
                     </button>
                   </div>
-                  {errors.password && (
+                  {(errors as Record<string, { message: string }>).password && (
                     <p className="mt-1.5 text-sm text-error">
-                      {errors.password.message}
+                      {(errors as Record<string, { message: string }>).password.message}
                     </p>
                   )}
                 </div>
@@ -709,13 +709,13 @@ export default function RegisterPage() {
                         border-2 transition-all duration-200
                         placeholder:text-on-surface-variant/40
                         focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20
-                        ${errors.confirmPassword ? "border-error" : "border-surface-container"}
+                        ${(errors as Record<string, { message: string }>).confirmPassword ? "border-error" : "border-surface-container"}
                       `}
                     />
                   </div>
-                  {errors.confirmPassword && (
+                  {(errors as Record<string, { message: string }>).confirmPassword && (
                     <p className="mt-1.5 text-sm text-error">
-                      {errors.confirmPassword.message}
+                      {(errors as Record<string, { message: string }>).confirmPassword.message}
                     </p>
                   )}
                 </div>
