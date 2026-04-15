@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { ClerkProvider } from "@clerk/clerk-expo";
@@ -36,6 +36,18 @@ export default function RootLayout() {
     setIsSplashDone(true);
   }, []);
 
+  if (!publishableKey) {
+    return (
+      <View style={[styles.root, styles.configMissing]}>
+        <Text style={styles.configTitle}>Configuracao do Clerk ausente</Text>
+        <Text style={styles.configBody}>
+          Defina EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY em apps/mobile/.env com uma
+          chave pk_test_ ou pk_live_.
+        </Text>
+      </View>
+    );
+  }
+
   return (
     <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
       <View style={styles.root}>
@@ -58,6 +70,25 @@ export default function RootLayout() {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
+  },
+  configMissing: {
+    alignItems: "center",
+    backgroundColor: "#FFFFFF",
+    justifyContent: "center",
+    padding: 24,
+  },
+  configTitle: {
+    color: "#111827",
+    fontSize: 20,
+    fontWeight: "700",
+    marginBottom: 8,
+    textAlign: "center",
+  },
+  configBody: {
+    color: "#4B5563",
+    fontSize: 14,
+    lineHeight: 20,
+    textAlign: "center",
   },
 });
 

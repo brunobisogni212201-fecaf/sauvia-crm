@@ -1,9 +1,15 @@
 import * as SecureStore from "expo-secure-store";
 import * as Linking from "expo-linking";
 import * as WebBrowser from "expo-web-browser";
+import {
+  getClerkPublishableKey as getConfiguredClerkPublishableKey,
+  isValidClerkPublishableKey,
+} from "./clerk-config";
 
-const CLERK_PUBLISHABLE_KEY =
-  process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY || "";
+const CLERK_PUBLISHABLE_KEY = getConfiguredClerkPublishableKey({
+  EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY:
+    process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY,
+});
 
 const REDIRECT_URI = Linking.createURL("callback");
 const APP_SCHEME = "sauvia";
@@ -20,7 +26,7 @@ const USER_ID_KEY = "sauvia_clerk_user_id";
 
 export async function initializeClerk(): Promise<boolean> {
   if (!CLERK_PUBLISHABLE_KEY) {
-    console.warn("Clerk publishable key not configured - using keyless mode");
+    console.warn("Clerk publishable key not configured");
     return false;
   }
   return true;
@@ -29,7 +35,7 @@ export async function initializeClerk(): Promise<boolean> {
 export async function signInWithClerk(): Promise<void> {
   const publishableKey = CLERK_PUBLISHABLE_KEY;
 
-  if (!publishableKey) {
+  if (!isValidClerkPublishableKey(publishableKey)) {
     throw new Error(
       "Clerk not configured. Please set EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY",
     );
@@ -52,7 +58,7 @@ export async function signInWithClerk(): Promise<void> {
 export async function signUpWithClerk(): Promise<void> {
   const publishableKey = CLERK_PUBLISHABLE_KEY;
 
-  if (!publishableKey) {
+  if (!isValidClerkPublishableKey(publishableKey)) {
     throw new Error(
       "Clerk not configured. Please set EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY",
     );
@@ -86,11 +92,11 @@ export async function getStoredUserId(): Promise<string | null> {
 }
 
 export function isClerkConfigured(): boolean {
-  return Boolean(CLERK_PUBLISHABLE_KEY);
+  return isValidClerkPublishableKey(CLERK_PUBLISHABLE_KEY);
 }
 
-export function getClerkPublishableKey(): string {
-  return CLERK_PUBLISHABLE_KEY || "keyless_mode";
+export function getClerkPublishableKey(): string | null {
+  return CLERK_PUBLISHABLE_KEY;
 }
 
 export { REDIRECT_URI, APP_SCHEME };

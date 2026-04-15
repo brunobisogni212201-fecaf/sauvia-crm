@@ -7,6 +7,7 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 import { Show } from "@/components/clerk/Show";
+import { getClerkPublishableKey } from "@/lib/clerk-env";
 import "./globals.css";
 
 const instrumentSerif = Instrument_Serif({
@@ -31,9 +32,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const publishableKey = getClerkPublishableKey();
+
   return (
     <ClerkProvider
-      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+      publishableKey={publishableKey}
       afterSignOutUrl={process.env.CLERK_SIGN_IN_URL || "/"}
     >
       <html lang="pt-BR">
