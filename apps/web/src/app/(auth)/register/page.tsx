@@ -40,7 +40,10 @@ export default function RegisterPage() {
         </div>
       </div>
 
-      <div className="hidden lg:flex flex-1 relative overflow-hidden bg-gradient-to-br from-primary via-primary-dark to-[#3b0764]">
+      <div
+        className="hidden lg:flex flex-1 relative overflow-hidden"
+        style={{ backgroundColor: "#17122F" }}
+      >
         <div className="absolute -top-24 -right-24 w-96 h-96 bg-white/5 rounded-full" />
         <div className="absolute bottom-12 -left-16 w-72 h-72 bg-white/5 rounded-full" />
         <div className="absolute top-1/3 right-1/4 w-48 h-48 bg-white/5 rounded-full" />
